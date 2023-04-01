@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 255)->nullable();
+            $table->unsignedBigInteger('course_id');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->string('nama_video', 255);
+            $table->string('link', 255);
+            $table->timestamps();
         });
     }
 
