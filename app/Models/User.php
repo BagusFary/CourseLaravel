@@ -43,4 +43,9 @@ class User extends Authenticatable
     ];
 
     public $timestamps = false;
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id', 'id');
+    }
 }
