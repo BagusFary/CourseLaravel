@@ -10,6 +10,7 @@ class Course extends Model
     use HasFactory;
 
     protected $table = 'courses';
+    protected $guarded = ['id'];
 
     public function orders()
     {
@@ -25,4 +26,6 @@ class Course extends Model
     {
         return $this->hasMany(Video::class, 'course_id', 'id');
     }
+
+
 }

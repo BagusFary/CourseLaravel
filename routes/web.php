@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/course', [CourseController::class, 'index']);
+Route::get('/create-course', [CourseController::class, 'create']);
+Route::post('/store-course', [CourseController::class, 'store']);
+
 
 Auth::routes();
 
