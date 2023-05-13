@@ -26,4 +26,11 @@ class CourseController extends Controller
 
         return redirect('/course');
     }
+
+    public function edit($id){
+        $dataCourse = Course::findOrFail($id);
+        return view('Course.edit', ['dataCourse' => $dataCourse]);
+    }
+
+
 }

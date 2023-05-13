@@ -14,12 +14,14 @@ use App\Http\Controllers\CourseController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route Course
+Route::get('/', [CourseController::class, 'index']);
 Route::get('/course', [CourseController::class, 'index']);
 Route::get('/create-course', [CourseController::class, 'create']);
 Route::post('/store-course', [CourseController::class, 'store']);
+Route::get('/edit-course/{id}', [CourseController::class, 'edit']);
+
+
 
 
 Auth::routes();
