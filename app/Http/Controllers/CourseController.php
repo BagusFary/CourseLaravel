@@ -36,5 +36,16 @@ class CourseController extends Controller
 
     }
 
+    public function delete($id){
+        $dataCourse = Course::findOrFail($id);
+        return view('Course.delete', ['dataCourse' => $dataCourse]);
+    }
+
+    public function destroy($id){
+        $dataCourse = Course::findOrFail($id);
+        $dataCourse->destroy();
+        return redirect('/course');
+    }
+
 
 }

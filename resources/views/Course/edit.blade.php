@@ -31,12 +31,8 @@
             </div>
             <div class="mb-3">
                 <button type="submit" class="btn btn-success">Save</button>
-                <a href="/course" class="btn btn-danger">Back/Cancel</a>
-                <form action="/delete-course" method="POST">
-                    @method('delete')
-                    @csrf
-                    <button type="submit" class="btn btn-warning">Delete Course</button>
-                </form>
+                <a href="/course" class="btn btn-warning">Back/Cancel</a>
+                <a href="/delete-course/{{ $dataCourse->id }}" class="btn btn-outline-danger">Delete</a>
             </div>
         </form>
 </div>
