@@ -18,11 +18,7 @@ class CourseController extends Controller
 
     public function store(Request $request){
 
-        // $dataCourse = $request->all();
-
-        // $dataCourse->save();
-
-        $dataCourse = Course::create($request->all());
+        Course::create($request->all());
 
         return redirect('/course');
     }
@@ -30,6 +26,14 @@ class CourseController extends Controller
     public function edit($id){
         $dataCourse = Course::findOrFail($id);
         return view('Course.edit', ['dataCourse' => $dataCourse]);
+    }
+
+    public function update(Request $request, $id){
+
+        $dataCourse = Course::findOrFail($id);
+        $dataCourse->update($request->all());
+        return redirect('/course');
+
     }
 
 
