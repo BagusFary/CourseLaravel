@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,7 @@ use App\Http\Controllers\CourseController;
 */
 
 Route::group(['middleware' => ['auth','admin']], function(){
+    Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/create-course', [CourseController::class, 'create']);
     Route::post('/store-course', [CourseController::class, 'store']);
     Route::get('/edit-course/{id}', [CourseController::class, 'edit']);
