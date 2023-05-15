@@ -43,7 +43,7 @@ class CourseController extends Controller
 
     public function destroy($id){
         $dataCourse = Course::findOrFail($id);
-        $dataCourse->destroy();
+        $dataCourse->delete();
         return redirect('/course');
     }
 
