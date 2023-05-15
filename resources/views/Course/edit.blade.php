@@ -10,7 +10,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ $dataCourse->title }}</h5>
               <p class="card-text">{{ $dataCourse->description }}</p>
-              <p>{{ $dataCourse->price }}</p>
+              <p>Rp.{{ number_format($dataCourse->price,2,',','.'); }}</p>
               <a href="#" class="btn btn-success disabled">Course Detail</a>
             </div>
           </div>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="mb-2 mx-3">
                     <label for="price" class="form-label">Price</label>
-                    <input type="number" name="price" class="form-control" id="price" placeholder="Rp.{{ $dataCourse->price }}" value="{{ $dataCourse->price }}">
+                    <input type="number" name="price" class="form-control" id="price" placeholder="Rp.{{ number_format($dataCourse->price,2,',','.'); }}" value="{{ $dataCourse->price }}">
                 </div>
                 <div class="mb-3 mx-3">
                     <button type="submit" class="btn btn-success">Save</button>

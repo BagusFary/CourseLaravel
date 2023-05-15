@@ -10,9 +10,11 @@
                     <div class="card-body">
                       <h5 class="card-title">{{ $item->title }}</h5>
                       <p class="card-text">{{ $item->description }}</p>
-                      <p>Rp.{{ $item->price }}</p>
+                      <p>Rp.{{ number_format($item->price,2,',','.'); }}</p>
                       <a href="#" class="btn btn-success">Course Detail</a>
-                      <a href="edit-course/{{ $item->id }}" class="btn btn-warning">Edit Course</a>
+                      @can('admin')
+                      <a href="edit-course/{{ $item->id }}" class="btn btn-warning">Edit Course</a> 
+                      @endcan
                     </div>
                 </div>
             </div>
@@ -20,3 +22,4 @@
         </div>
     </div>
 @endsection
+
