@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-         @foreach ($dataCourse as $item)
+         @forelse ($dataCourse as $item)
             <div class="col-md-4 mb-5 mt-3 d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
                     <img src="..." class="card-img-top" alt="...">
@@ -18,7 +18,9 @@
                     </div>
                 </div>
             </div>
-         @endforeach
+            @empty
+            <h2>No Course Found:(</h2>
+         @endforelse
         </div>
     </div>
 @endsection

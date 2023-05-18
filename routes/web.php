@@ -15,7 +15,7 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::group(['middleware' => ['auth','admin']], function(){
+Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/create-course', [CourseController::class, 'create']);
     Route::post('/store-course', [CourseController::class, 'store']);

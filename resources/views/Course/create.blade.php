@@ -14,10 +14,6 @@
                 <label for="description" class="form-label">Description</label>
                 <input type="text" name="description" class="form-control" id="description" placeholder="Description" required>
             </div>
-            {{-- <div class="mb-3 ">
-                <label for="video" class="form-label">Video</label>
-                <input type="file" name="video" class="form-control" id="video" placeholder="video">
-            </div> --}}
             <div class="mb-3">
                 <label for="price">Price</label>
                 <div class="input-group mb-3">
@@ -27,7 +23,7 @@
             </div>
             <div class="mb-3 ">
                 <button type="submit" class="btn btn-success">Create Course</button>
-                <a href="/course" class="btn btn-warning">Back/Cancel</a>
+                <a href="/dashboard" class="btn btn-warning">Back/Cancel</a>
             </div>
         </form>
     </div>
