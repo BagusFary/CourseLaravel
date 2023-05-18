@@ -20,7 +20,7 @@ class CourseController extends Controller
 
         Course::create($request->all());
 
-        return redirect('/course');
+        return redirect('/show-all-courses');
     }
 
     public function edit($id){
@@ -32,7 +32,7 @@ class CourseController extends Controller
 
         $dataCourse = Course::findOrFail($id);
         $dataCourse->update($request->all());
-        return redirect('/course');
+        return redirect('/show-all-courses');
 
     }
 
@@ -44,8 +44,11 @@ class CourseController extends Controller
     public function destroy($id){
         $dataCourse = Course::findOrFail($id);
         $dataCourse->delete();
-        return redirect('/course');
+        return redirect('/show-all-courses');
     }
 
+    public function tes(){
+        return view('Course.tes');
+    }
 
 }

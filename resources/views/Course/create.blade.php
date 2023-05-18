@@ -1,9 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('content')
+
 <div class="container">
     <h2 class="d-flex justify-content-center">Create Course</h2>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center col-sm-12">
         <form action="/store-course" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3 ">
@@ -13,6 +14,10 @@
             <div class="mb-3 ">
                 <label for="description" class="form-label">Description</label>
                 <input type="text" name="description" class="form-control" id="description" placeholder="Description" required>
+            </div>
+            <div class="mb-3">
+                <label for="description">Description</label>
+                <textarea name="description" class="form-control" id="description" cols="10" rows="5"></textarea>
             </div>
             <div class="mb-3">
                 <label for="price">Price</label>

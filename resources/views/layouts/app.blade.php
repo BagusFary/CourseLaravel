@@ -63,9 +63,6 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/dashboard">Dashboard</a>
-                                    @if (Auth::user()->role == "admin")
-                                    <a  class="dropdown-item" href="/create-course">Add/New Course</a>
-                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

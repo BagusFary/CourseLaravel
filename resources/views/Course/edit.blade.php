@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('content')
 
@@ -31,7 +31,7 @@
                 </div>
                 <div class="mb-3 mx-3">
                     <button type="submit" class="btn btn-success">Save</button>
-                    <a href="/course" class="btn btn-warning">Back/Cancel</a>
+                    <a href="/show-all-courses" class="btn btn-warning">Back/Cancel</a>
                     <a href="/delete-course/{{ $dataCourse->id }}" class="btn btn-outline-danger">Delete</a>
                 </div>
             </form>
@@ -39,4 +39,4 @@
        
 </div>
     
-@endsection
+@endsection 

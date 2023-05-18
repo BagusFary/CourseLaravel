@@ -17,6 +17,13 @@ use App\Http\Controllers\DashboardController;
 
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/', [CourseController::class, 'index']);
+    Route::get('/course', [CourseController::class, 'index']);
+});
+
+Route::group(['middleware' => ['auth','admin']], function(){
+    Route::get('/show-all-courses', [DashboardController::class, 'showAllCourses']);
+    Route::get('/tes', [CourseController::class, 'tes']);
     Route::get('/create-course', [CourseController::class, 'create']);
     Route::post('/store-course', [CourseController::class, 'store']);
     Route::get('/edit-course/{id}', [CourseController::class, 'edit']);
@@ -26,8 +33,10 @@ Route::group(['middleware' => ['auth']], function(){
 });
 
 
-    Route::get('/', [CourseController::class, 'index']);
-    Route::get('/course', [CourseController::class, 'index']);
+
+
+
+
 
 
 

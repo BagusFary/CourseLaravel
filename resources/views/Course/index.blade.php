@@ -12,9 +12,6 @@
                       <p class="card-text">{{ $item->description }}</p>
                       <p>Rp.{{ number_format($item->price,2,',','.'); }}</p>
                       <a href="#" class="btn btn-success">Course Detail</a>
-                      @can('admin')
-                      <a href="edit-course/{{ $item->id }}" class="btn btn-warning">Edit Course</a> 
-                      @endcan
                     </div>
                 </div>
             </div>
