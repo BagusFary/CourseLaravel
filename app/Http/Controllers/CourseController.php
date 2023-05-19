@@ -47,13 +47,19 @@ class CourseController extends Controller
             $extension = $request->file('thumbnail')->getClientOriginalExtension();
             $thumbnailName = now()->timestamp.".".$extension;
             $request->file('thumbnail')->storeAs('thumbnail', $thumbnailName);
+            $dataCourse = Course::findOrFail($id);
+            $dataCourse->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'thumbnail' => $thumbnailName,
+                'price' => $request->price,
+            ]);
         }
 
         $dataCourse = Course::findOrFail($id);
         $dataCourse->update([
             'title' => $request->title,
             'description' => $request->description,
-            'thumbnail' => $request->thumbnail,
             'price' => $request->price,
         ]);
         return redirect('/show-all-courses');

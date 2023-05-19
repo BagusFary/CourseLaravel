@@ -25,6 +25,10 @@
                     <label for="description" class="form-label">Description</label>
                     <input type="text" name="description" class="form-control" id="description" placeholder="{{ $dataCourse->description }}" value="{{ $dataCourse->description }}">
                 </div>
+                <div class="mb-3 mx-3">
+                    <label for="thumbnail">Thumbnail</label>
+                    <input type="file" name="thumbnail" class="form-control" id="thumbnail">
+                </div>
                 <div class="mb-2 mx-3">
                     <label for="price" class="form-label">Price</label>
                     <input type="number" name="price" class="form-control" id="price" placeholder="Rp.{{ number_format($dataCourse->price,2,',','.'); }}" value="{{ $dataCourse->price }}">

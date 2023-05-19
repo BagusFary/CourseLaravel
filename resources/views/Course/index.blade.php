@@ -6,7 +6,7 @@
          @forelse ($dataCourse as $item)
             <div class="col-md-4 mb-5 mt-3 d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="{{ asset('storage/thumbnail/'.$item->thumbnail) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">{{ $item->title }}</h5>
                       <p class="card-text">{{ $item->description }}</p>
