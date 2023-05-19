@@ -17,7 +17,6 @@
             </div>
             <div class="mb-3">
                 <label for="thumbnail">Thumbnail</label>
-
                 <input type="file" name="thumbnail" class="form-control" id="thumbnail" required>
             </div>
             <div class="mb-3">
