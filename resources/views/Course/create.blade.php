@@ -11,13 +11,14 @@
                 <label for="title" class="form-label">Course Title</label>
                 <input type="text" name="title" class="form-control" id="title" placeholder="Course Title" required>
             </div>
-            <div class="mb-3 ">
-                <label for="description" class="form-label">Description</label>
-                <input type="text" name="description" class="form-control" id="description" placeholder="Description" required>
-            </div>
             <div class="mb-3">
                 <label for="description">Description</label>
                 <textarea name="description" class="form-control" id="description" cols="10" rows="5"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="thumbnail">Thumbnail</label>
+
+                <input type="file" name="thumbnail" class="form-control" id="thumbnail" required>
             </div>
             <div class="mb-3">
                 <label for="price">Price</label>
