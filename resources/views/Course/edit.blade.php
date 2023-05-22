@@ -6,7 +6,7 @@
     <h2 class="d-flex justify-content-center">Edit Course</h2>
     <div class="d-flex justify-content-center mt-3">
         <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+            <img src="{{ asset('storage/thumbnail/'.$dataCourse->thumbnail) }}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{ $dataCourse->title }}</h5>
               <p class="card-text">{{ $dataCourse->description }}</p>
@@ -21,13 +21,17 @@
                     <label for="title" class="form-label">Course Title</label>
                     <input type="text" name="title" class="form-control" id="title" placeholder="{{ $dataCourse->title }}" value="{{ $dataCourse->title }}">
                 </div>
-                <div class="mb-2 mx-3">
-                    <label for="description" class="form-label">Description</label>
-                    <input type="text" name="description" class="form-control" id="description" placeholder="{{ $dataCourse->description }}" value="{{ $dataCourse->description }}">
-                </div>
+                    <div class="mx-3">
+                        <label for="description">Description</label>
+                        <textarea name="description" class="form-control" id="description" cols="10" rows="5" placeholder="{{ $dataCourse->description }}" value="{{ $dataCourse->description }}">{{ $dataCourse->description }}</textarea>
+                    </div>
                 <div class="mb-3 mx-3">
                     <label for="thumbnail">Thumbnail</label>
                     <input type="file" name="thumbnail" class="form-control" id="thumbnail">
+                </div>
+                <div class="mb-3 mx-3">
+                    <label for="video">Video</label>
+                    <input type="file" name="video" class="form-control" id="video">
                 </div>
                 <div class="mb-2 mx-3">
                     <label for="price" class="form-label">Price</label>

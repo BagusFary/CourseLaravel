@@ -10,5 +10,7 @@ class Video extends Model
     use HasFactory;
 
     protected $table = 'videos';
+    protected $guarded =['id'];
+    public $timestamps = false;
 
 }

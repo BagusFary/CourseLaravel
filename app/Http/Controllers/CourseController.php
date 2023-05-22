@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use App\Http\Requests\CourseRequest;
 use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
@@ -17,19 +18,27 @@ class CourseController extends Controller
         return view('Course.create');
     }
 
-    public function store(Request $request){
+    public function store(CourseRequest $request){
 
-        $extension = $request->file('thumbnail')->getClientOriginalExtension();
-        $thumbnailName = now()->timestamp.".".$extension;
+        $videoExtension = $request->file('video')->getClientOriginalExtension();
+        $videoName = "video"."-".now()->timestamp.".".$videoExtension;
+
+        $thumbnailExtension = $request->file('thumbnail')->getClientOriginalExtension();
+        $thumbnailName = now()->timestamp.".".$thumbnailExtension;
         
         $request->file('thumbnail')->storeAs('thumbnail', $thumbnailName);
+        $request->file('video')-> storeAs('video',$videoName);
+
+        
         
         Course::create([
             'title' => $request->title,
             'description' => $request->description,
             'thumbnail' => $thumbnailName,
+            'video' => $videoName,
             'price' => $request->price,
         ]);
+
 
         return redirect('/show-all-courses');
     }
@@ -39,11 +48,12 @@ class CourseController extends Controller
         return view('Course.edit', ['dataCourse' => $dataCourse]);
     }
 
-    public function update(Request $request, $id){
+    public function update(CourseRequest $request, $id){
 
         if($request->file('thumbnail')){
-            $oldThumbnail = Course::findOrFail($id);
-            Storage::delete('thumbnail/'. $oldThumbnail->thumbnail);
+
+            $oldFile = Course::findOrFail($id);
+            Storage::delete('thumbnail/'. $oldFile->thumbnail);
             $extension = $request->file('thumbnail')->getClientOriginalExtension();
             $thumbnailName = now()->timestamp.".".$extension;
             $request->file('thumbnail')->storeAs('thumbnail', $thumbnailName);
@@ -52,6 +62,20 @@ class CourseController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'thumbnail' => $thumbnailName,
+                'price' => $request->price,
+            ]);
+        } else if($request->file('video')) {
+            
+            $oldFile = Course::findOrFail($id);
+            Storage::delete('video/'. $oldFile->video);
+            $extension = $request->file('video')->getClientOriginalExtension();
+            $videoName = now()->timestamp.".".$extension;
+            $request->file('video')->storeAs('video', $videoName);
+            $dataCourse = Course::findOrFail($id);
+            $dataCourse->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'video' => $videoName,
                 'price' => $request->price,
             ]);
         }
@@ -74,6 +98,7 @@ class CourseController extends Controller
     public function destroy($id){
         $dataCourse = Course::findOrFail($id);
         Storage::delete('thumbnail/'. $dataCourse->thumbnail);
+        Storage::delete('video/'. $dataCourse->video);
         $dataCourse->delete();
         return redirect('/show-all-courses');
     }

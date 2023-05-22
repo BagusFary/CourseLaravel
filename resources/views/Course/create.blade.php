@@ -4,6 +4,15 @@
 
 <div class="container">
     <h2 class="d-flex justify-content-center">Create Course</h2>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="d-flex justify-content-center col-sm-12">
         <form action="/store-course" method="post" enctype="multipart/form-data">
             @csrf
@@ -18,6 +27,10 @@
             <div class="mb-3">
                 <label for="thumbnail">Thumbnail</label>
                 <input type="file" name="thumbnail" class="form-control" id="thumbnail" required>
+            </div>
+            <div class="mb-3">
+                <label for="video">Video</label>
+                <input type="file" name="video" class="form-control" id="video" required>
             </div>
             <div class="mb-3">
                 <label for="price">Price</label>
