@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rules\File;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CourseRequest extends FormRequest
+class UpdateCourseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +23,10 @@ class CourseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:30',
-            'description' => 'required|max:255',
-            'thumbnail' =>  'required',
-            'video' => 'required|file|mimetypes:video/mp4',
-            'price' => 'required'
+            'title' => 'max:30',
+            'description' => 'max:255',
+            'thumbnail' =>  [File::image()->max(5000)],
+            'video' => [File::types(['mp4','avi'])->max(100000)],
         ];
     }
 }

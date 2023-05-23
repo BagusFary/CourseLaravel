@@ -4,6 +4,15 @@
 
 <div class="container">
     <h2 class="d-flex justify-content-center">Edit Course</h2>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="d-flex justify-content-center mt-3">
         <div class="card" style="width: 18rem;">
             <img src="{{ asset('storage/thumbnail/'.$dataCourse->thumbnail) }}" class="card-img-top" alt="...">
@@ -14,7 +23,7 @@
               <a href="#" class="btn btn-success disabled">Course Detail</a>
             </div>
           </div>
-          <form action="/update-course/{{ $dataCourse->id }}" method="POST">
+          <form action="/update-course/{{ $dataCourse->id }}" method="POST" enctype="multipart/form-data">
             @method('put')
             @csrf
                 <div class="mb-2 mx-3">
@@ -33,9 +42,16 @@
                     <label for="video">Video</label>
                     <input type="file" name="video" class="form-control" id="video">
                 </div>
-                <div class="mb-2 mx-3">
+                {{-- <div class="mb-2 mx-3">
                     <label for="price" class="form-label">Price</label>
                     <input type="number" name="price" class="form-control" id="price" placeholder="Rp.{{ number_format($dataCourse->price,2,',','.'); }}" value="{{ $dataCourse->price }}">
+                </div> --}}
+                <div class="mb-3 mx-3">
+                    <label for="price">Price</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Rp.</span>
+                        <input type="number" name="price" class="form-control" placeholder="Price" value="{{ $dataCourse->price }}" required>
+                    </div>
                 </div>
                 <div class="mb-3 mx-3">
                     <button type="submit" class="btn btn-success">Save</button>

@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
-use App\Http\Requests\CourseRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\CreateCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 
 class CourseController extends Controller
 {
@@ -18,7 +19,7 @@ class CourseController extends Controller
         return view('Course.create');
     }
 
-    public function store(CourseRequest $request){
+    public function store(CreateCourseRequest $request){
 
         $videoExtension = $request->file('video')->getClientOriginalExtension();
         $videoName = "video"."-".now()->timestamp.".".$videoExtension;
@@ -48,7 +49,7 @@ class CourseController extends Controller
         return view('Course.edit', ['dataCourse' => $dataCourse]);
     }
 
-    public function update(CourseRequest $request, $id){
+    public function update(UpdateCourseRequest $request, $id){
 
         if($request->file('thumbnail')){
 
@@ -59,17 +60,21 @@ class CourseController extends Controller
             $request->file('thumbnail')->storeAs('thumbnail', $thumbnailName);
             $dataCourse = Course::findOrFail($id);
             $dataCourse->update([
+                
                 'title' => $request->title,
                 'description' => $request->description,
                 'thumbnail' => $thumbnailName,
                 'price' => $request->price,
+
             ]);
-        } else if($request->file('video')) {
+        } 
+        
+        if($request->file('video')) {
             
             $oldFile = Course::findOrFail($id);
             Storage::delete('video/'. $oldFile->video);
             $extension = $request->file('video')->getClientOriginalExtension();
-            $videoName = now()->timestamp.".".$extension;
+            $videoName = "video"."-".now()->timestamp.".".$extension;
             $request->file('video')->storeAs('video', $videoName);
             $dataCourse = Course::findOrFail($id);
             $dataCourse->update([
@@ -86,6 +91,8 @@ class CourseController extends Controller
             'description' => $request->description,
             'price' => $request->price,
         ]);
+
+
         return redirect('/show-all-courses');
 
     }
