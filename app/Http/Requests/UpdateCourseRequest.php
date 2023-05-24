@@ -24,7 +24,7 @@ class UpdateCourseRequest extends FormRequest
     {
         return [
             'title' => 'max:30',
-            'description' => 'min:150|max:255',
+            'description' => 'max:255',
             'thumbnail' =>  [File::image()->max(5000)],
             'video' => [File::types(['mp4','avi'])->max(100000)],
         ];

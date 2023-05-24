@@ -18,19 +18,19 @@
             @csrf
             <div class="mb-3 ">
                 <label for="title" class="form-label">Course Title</label>
-                <input type="text" name="title" class="form-control" id="title" placeholder="Course Title" required>
+                <input type="text" name="title" class="form-control" id="title" placeholder="Course Title" value="{{ old('title') }}" required>
             </div>
             <div class="mb-3">
                 <label for="description">Description</label>
-                <textarea name="description" class="form-control" id="description" cols="10" rows="5"></textarea>
+                <textarea name="description" class="form-control" id="description" cols="10" rows="5">{{ old('description') }}</textarea>
             </div>
             <div class="mb-3">
                 <label for="thumbnail">Thumbnail</label>
-                <input type="file" name="thumbnail" class="form-control" id="thumbnail" required>
+                <input type="file" name="thumbnail" class="form-control" id="thumbnail" value="{{ old('thumbnail') }}" required>
             </div>
             <div class="mb-3">
                 <label for="video">Video</label>
-                <input type="file" name="video" class="form-control" id="video" required>
+                <input type="file" name="video" class="form-control" id="video" value="{{ old('video') }}" required>
             </div>
             <div class="mb-3">
                 <label for="price">Price</label>
