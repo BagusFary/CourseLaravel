@@ -15,6 +15,11 @@ class CourseController extends Controller
         return view('Course.index', ['dataCourse' => $dataCourse]);
     }
 
+    public function detail($id){
+        $dataCourse = Course::findOrFail($id);
+        return view('Course.detail', ['dataCourse' => $dataCourse]);
+    }
+
     public function create(){
         return view('Course.create');
     }

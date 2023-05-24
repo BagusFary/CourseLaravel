@@ -34,7 +34,7 @@
       <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
           <!-- Sidebar - Brand -->
-          <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+          <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/course">
               <div class="sidebar-brand-text mx-3">Laravel Course</div>
           </a>
 

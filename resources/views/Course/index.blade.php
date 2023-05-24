@@ -11,7 +11,7 @@
                       <h5 class="card-title">{{ $item->title }}</h5>
                       <p class="card-text">{{ $item->description }}</p>
                       <p>Rp.{{ number_format($item->price,2,',','.'); }}</p>
-                      <a href="#" class="btn btn-success">Course Detail</a>
+                      <a href="/detail-course/{{ $item->id }}" class="btn btn-success">Course Detail</a>
                     </div>
                 </div>
             </div>

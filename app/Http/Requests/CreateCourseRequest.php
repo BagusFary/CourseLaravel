@@ -24,7 +24,7 @@ class CreateCourseRequest extends FormRequest
     {
         return [
             'title' => 'required|max:30',
-            'description' => 'required|max:255',
+            'description' => 'required|min:150|max:255',
             'thumbnail' =>  ['required', File::image()->max(5000)],
             'video' => ['required', File::types(['mp4','avi'])->max(100000)],
             'price' => 'required|integer'

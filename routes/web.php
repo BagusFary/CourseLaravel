@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/', [CourseController::class, 'index']);
     Route::get('/course', [CourseController::class, 'index']);
+    Route::get('/detail-course/{id}', [CourseController::class, 'detail']);
 });
 
 Route::group(['middleware' => ['auth','admin']], function(){
