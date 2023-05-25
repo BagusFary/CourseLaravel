@@ -12,17 +12,19 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
       <!-- Custom fonts for this template-->
       <link href="{{ url('/') }}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
       <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
       <!-- Custom styles for this template-->
       <link href="{{ url('/') }}/css/sb-admin-2.min.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
-      <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
 
-    <!-- Scripts -->
+
+      <!-- Scripts -->
+      <script src="https://kit.fontawesome.com/23892f488e.js" crossorigin="anonymous"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
@@ -42,12 +44,14 @@
           <hr class="sidebar-divider my-0">
 
           <!-- Nav Item - Dashboard -->
+          @can('user')
           <li class="nav-item">
-              <a class="nav-link" href="/dashboard">
-                  <i class="fa fa-book"></i>
-                  <span>Your Course</span></a>
-          </li>
-
+                <a class="nav-link" href="/dashboard">
+                <i class="fa fa-book"></i>
+                <span>Your Course</span></a>
+            </li>
+          @endcan
+          
           <!-- Divider -->
           <hr class="sidebar-divider">
 
@@ -66,6 +70,8 @@
               </a>
               <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
+                      <h6 class="collapse-header">Manage Approvement : </h6>
+                      <a class="collapse-item" href="/show-all-orders">Approve Orders</a>
                       <h6 class="collapse-header">Manage Courses : </h6>
                       <a class="collapse-item" href="/show-all-courses">Show All Courses</a>
                       <a class="collapse-item" href="/create-course">Create Course</a>
@@ -348,6 +354,7 @@
 
 
         <!-- Bootstrap core JavaScript-->
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="{{ url('/') }}/vendor/jquery/jquery.min.js"></script>
         <script src="{{ url('/') }}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     

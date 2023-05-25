@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +21,13 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/', [CourseController::class, 'index']);
     Route::get('/course', [CourseController::class, 'index']);
     Route::get('/detail-course/{id}', [CourseController::class, 'detail']);
+    Route::get('/orders/{id}', [TransactionController::class, 'orderDetail']);
+    Route::post('/processing-orders/{id}', [TransactionController::class, 'orders']);
 });
 
 Route::group(['middleware' => ['auth','admin']], function(){
     Route::get('/show-all-courses', [DashboardController::class, 'showAllCourses']);
+    Route::get('/show-all-orders', [DashboardController::class, 'showAllOrders']);
     Route::get('/tes', [CourseController::class, 'tes']);
     Route::get('/create-course', [CourseController::class, 'create']);
     Route::post('/store-course', [CourseController::class, 'store']);
