@@ -11,7 +11,7 @@ use App\Http\Requests\UpdateCourseRequest;
 class CourseController extends Controller
 {
     public function index(){
-        $dataCourse = Course::get();
+        $dataCourse = Course::paginate(3);
         return view('Course.index', ['dataCourse' => $dataCourse]);
     }
 

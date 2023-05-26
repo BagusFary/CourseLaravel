@@ -18,7 +18,7 @@ class DashboardController extends Controller
     }
 
     public function showAllOrders(){
-        $dataOrder = Order::get();
+        $dataOrder = Order::with(['user:id,name','course:id,title'])->get();
         return view('Dashboard.showallorders', ['dataOrder' => $dataOrder]);
     }
 }
