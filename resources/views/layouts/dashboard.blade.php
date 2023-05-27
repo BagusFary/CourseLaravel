@@ -41,7 +41,7 @@
           </a>
 
           <!-- Divider -->
-          <hr class="sidebar-divider my-0">
+          <hr class="sidebar-divider my-2">
 
           <!-- Nav Item - Dashboard -->
           @can('user')
@@ -50,6 +50,7 @@
                 <i class="fa fa-book"></i>
                 <span>Your Course</span></a>
             </li>
+           
           @endcan
           
           <!-- Divider -->

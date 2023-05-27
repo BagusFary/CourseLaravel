@@ -3,6 +3,12 @@
 @section('content')
 <div class="container">
     <h2>Approve Orders</h2>
+    @if(Session::has('message'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <i class="fa-regular fa-circle-check fa-xl"></i><strong> {{ Session::get('message') }}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     <table class="table table-secondary table-striped">
         <tr>
             <th>Order ID</th>
@@ -18,7 +24,7 @@
             <td>{{ $item->user->name }}</td>
             <td>{{ $item->course->title }}</td>
             <td>Rp.{{ number_format($item->price,2,',','.'); }}</td>
-            <td>{{ $item->payment_status }}</td>
+            <td>{{ $item->status }}</td>
             <td>  
                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#order-{{ $item->id }}">
                     <i class="fa-solid fa-check"></i>
