@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Course;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class TransactionController extends Controller
 {
@@ -34,14 +37,26 @@ class TransactionController extends Controller
         }
     }
 
-    public function payment(Request $request){
-        $request['payment_status'] = "unpaid";
-        $courseOrder = Order::create($request->all());
+    public function approve($id){
+        $order = Order::findOrFail($id);
+        $order->update([
+            'payment_status' => 'paid'
+        ]);
 
-        if($courseOrder){
-            return response()->view('Transactions.success');
+        $invoice = Invoice::create([
+            'order_id' => $id,
+            'amount' => $order->price,
+            'payment_date' => Carbon::now(),
+            'payment_method' => 'Admin Approved',
+            'status' => 'paid', 
+        ]);
+
+        if($invoice){
+            Session::flash('messsage','Approve Order Successfull');
         } else {
-            return response()->view('Transactions.failed');
+            Session::flash('message','Approve Order Failed');
         }
+        return redirect('/show-all-orders');
+        
     }
 }

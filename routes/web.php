@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth']], function(){
 Route::group(['middleware' => ['auth','admin']], function(){
     Route::get('/show-all-courses', [DashboardController::class, 'showAllCourses']);
     Route::get('/show-all-orders', [DashboardController::class, 'showAllOrders']);
-    Route::get('/tes', [CourseController::class, 'tes']);
+    Route::put('/approve/{id}', [TransactionController::class, 'approve']);
     Route::get('/create-course', [CourseController::class, 'create']);
     Route::post('/store-course', [CourseController::class, 'store']);
     Route::get('/edit-course/{id}', [CourseController::class, 'edit']);

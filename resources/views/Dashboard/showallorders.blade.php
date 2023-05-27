@@ -9,7 +9,7 @@
             <th>Name</th>
             <th>Product</th>
             <th>Price</th>
-            <th>Payment Status</th>
+            <th>Status</th>
             <th>Action</th>
         </tr>
         @forelse ($dataOrder as $item)
@@ -41,21 +41,26 @@
                     <br>
                     Product :{{ $item->course->title }}
                     <br>
-                    Price : {{ $item->price }}
+                    Price : Rp.{{ number_format($item->price,2,',','.'); }}
                     <br>
-                    Payment Status : {{ $item->payment_status }}
+                    Status : {{ $item->payment_status }}
                     <br>
                   Approve Order?
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-outline-success">Approve</button>
+                  <form action="/approve/{{ $item->id }}" method="POST">
+                  @csrf
+                  @method('PUT')
+                  <button type="submit" class="btn btn-outline-success">Approve</button>
+                  </form>
+                  
                 </div>
               </div>
             </div>
           </div>
         @empty
-            <h3 class="d-flex justify-content-center">There is no order to be approved :)</h3>
+            <h3 class="d-flex justify-content-center">There is no order to be approved</h3>
         @endforelse
     </table>
 </div>
