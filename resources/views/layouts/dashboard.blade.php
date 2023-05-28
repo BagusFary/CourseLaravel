@@ -82,6 +82,7 @@
                   <div class="bg-white py-2 collapse-inner rounded">
                       <h6 class="collapse-header">Manage Approvement : </h6>
                       <a class="collapse-item" href="/show-all-orders">Approve Orders</a>
+                      <a class="collapse-item" href="/show-approved-orders">List Approved Orders</a>
                       <h6 class="collapse-header">Manage Courses : </h6>
                       <a class="collapse-item" href="/show-all-courses">Show All Courses</a>
                       <a class="collapse-item" href="/create-course">Create Course</a>

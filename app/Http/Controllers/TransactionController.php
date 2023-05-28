@@ -6,8 +6,11 @@ use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Course;
 use App\Models\Invoice;
+use App\Notifications\InvoiceCancel;
+use App\Notifications\InvoicePaid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 
 class TransactionController extends Controller
@@ -38,7 +41,7 @@ class TransactionController extends Controller
     }
 
     public function approve($id){
-        $order = Order::findOrFail($id);
+        $order = Order::with('user')->findOrFail($id);
         $order->update([
             'status' => 'active'
         ]);
@@ -51,12 +54,39 @@ class TransactionController extends Controller
             'status' => 'paid', 
         ]);
 
+
+        Notification::send($order->user,new InvoicePaid());
+
         if($invoice){
-            Session::flash('message','Approve Order Successfull');
+            Session::flash('approve-message','Approve Order Successfull');
         } else {
-            Session::flash('message','Approve Order Failed');
+            Session::flash('approve-message','Approve Order Failed');
         }
         return redirect('/show-all-orders');
         
+    }
+
+    public function cancel($id){
+        $order = Order::with('user')->findOrFail($id);
+        $order->update([
+            'status' => 'cancel'
+        ]);
+
+        $invoice = Invoice::create([
+            'order_id' => $id,
+            'amount' => $order->price,
+            'payment_date' => Carbon::now(),
+            'payment_method' => 'Canceled',
+            'status' => 'cancel', 
+        ]);
+
+        Notification::send($order->user,new InvoiceCancel());
+
+        if($invoice){
+            Session::flash('cancel-message','Cancel Order Successfull');
+        } else {
+            Session::flash('cancel-message','Cancel Order Failed');
+        }
+        return redirect('/show-all-orders');
     }
 }

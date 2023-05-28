@@ -19,8 +19,18 @@ class DashboardController extends Controller
     }
 
     public function showAllOrders(){
-        $dataOrder = Order::with(['user:id,name','course:id,title'])->get();
+        $dataOrder = Order::with(['user:id,name','course:id,title'])
+                            ->where('status','pending')
+                            ->get();
         return view('Dashboard.admin.showallorders', ['dataOrder' => $dataOrder]);
+    }
+
+    public function showApprovedOrders(){
+        $dataOrder = Order::with(['user:id,name','course:id,title'])
+                            ->where('status', 'active')
+                            ->orWhere('status', 'cancel')
+                            ->get();
+        return view('Dashboard.admin.showapprovedorders', ['dataOrder' => $dataOrder]);
     }
 
     public function showAllUserOrders(){
