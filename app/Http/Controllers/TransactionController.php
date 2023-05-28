@@ -28,6 +28,7 @@ class TransactionController extends Controller
         $request['price'] = $course->price;
         
         $courseOrder = Order::create($request->all());
+        
 
         if($courseOrder){
             return response()->view('Transactions.order-success');
@@ -42,19 +43,19 @@ class TransactionController extends Controller
             'status' => 'active'
         ]);
 
-        // $invoice = Invoice::create([
-        //     'order_id' => $id,
-        //     'amount' => $order->price,
-        //     'payment_date' => Carbon::now(),
-        //     'payment_method' => 'Admin Approved',
-        //     'status' => 'paid', 
-        // ]);
+        $invoice = Invoice::create([
+            'order_id' => $id,
+            'amount' => $order->price,
+            'payment_date' => Carbon::now(),
+            'payment_method' => 'Admin Approved',
+            'status' => 'paid', 
+        ]);
 
-        // if($invoice){
+        if($invoice){
             Session::flash('message','Approve Order Successfull');
-        // } else {
-        //     Session::flash('message','Approve Order Failed');
-        // }
+        } else {
+            Session::flash('message','Approve Order Failed');
+        }
         return redirect('/show-all-orders');
         
     }

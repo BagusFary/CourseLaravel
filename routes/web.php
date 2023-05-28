@@ -17,10 +17,11 @@ use App\Http\Controllers\TransactionController;
 */
 
 Route::group(['middleware' => ['auth']], function(){
-    Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/', [CourseController::class, 'index']);
     Route::get('/course', [CourseController::class, 'index']);
     Route::get('/detail-course/{id}', [CourseController::class, 'detail']);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/show-user-orders', [DashboardController::class, 'showAllUserOrders']);
     Route::get('/orders/{id}', [TransactionController::class, 'orderDetail']);
     Route::post('/processing-orders/{id}', [TransactionController::class, 'orders']);
 });
