@@ -29,10 +29,7 @@
             <td>{{ $item->status }}</td>
             <td>  
 
-              <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approveOrder-{{ $item->id }}">
-                  <i class="fa-solid fa-check"></i>
-              </button>    
-              <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelOrder-{{ $item->id }}">
+              <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteOrder-{{ $item->id }}">
                   <i class="fa-solid fa-xmark"></i>
               </button>          
 
@@ -40,7 +37,7 @@
             </td>
         </tr>
 
-          <div class="modal fade" id="cancelOrder-{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal fade" id="deleteOrder-{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -56,7 +53,7 @@
                     <br>
                     Status : {{ $item->status }}
                     <br>
-                  Deleting this order will also delete the invoice.
+                  <p class="lead">Deleting this order will also delete the invoice.</p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
