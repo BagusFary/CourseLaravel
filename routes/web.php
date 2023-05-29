@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth','admin']], function(){
     Route::get('/show-all-courses', [DashboardController::class, 'showAllCourses']);
     Route::get('/show-all-orders', [DashboardController::class, 'showAllOrders']);
     Route::get('/show-approved-orders', [DashboardController::class, 'showApprovedOrders']);
+    Route::delete('/delete-orders/{id}', [TransactionController::class, 'deleteOrders']);
     Route::put('/approve/{id}', [TransactionController::class, 'approve']);
     Route::put('/cancel/{id}', [TransactionController::class, 'cancel']);
     Route::get('/create-course', [CourseController::class, 'create']);

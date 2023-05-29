@@ -50,7 +50,7 @@ class TransactionController extends Controller
             'order_id' => $id,
             'amount' => $order->price,
             'payment_date' => Carbon::now(),
-            'payment_method' => 'Admin Approved',
+            'payment_method' => 'Approved',
             'status' => 'paid', 
         ]);
 
@@ -88,5 +88,18 @@ class TransactionController extends Controller
             Session::flash('cancel-message','Cancel Order Failed');
         }
         return redirect('/show-all-orders');
+    }
+
+    public function deleteOrders($id){
+        $deleteOrders = Order::findOrFail($id);
+
+        $deleteOrders->delete();
+
+        if($deleteOrders){
+            Session::flash('delete-message','Delete Order Successfull');
+        } else {
+            Session::flash('delete-message','Delete Order Failed');
+        }
+        return redirect('/show-approved-orders');
     }
 }

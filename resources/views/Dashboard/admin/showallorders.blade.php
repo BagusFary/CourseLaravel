@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2>Approve Orders</h2>
+    <h2>List Orders</h2>
     @if(Session::has('approve-message'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       <i class="fa-regular fa-circle-check fa-xl"></i><strong> {{ Session::get('approve-message') }}</strong>
@@ -59,7 +59,7 @@
                     <br>
                     Status : {{ $item->status }}
                     <br>
-                  Approve Order?
+                  <p class="lead">Approve Order?</p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -90,7 +90,7 @@
                     <br>
                     Status : {{ $item->status }}
                     <br>
-                  Cancel Order?
+                  <p class="lead">Cancel Order?</p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

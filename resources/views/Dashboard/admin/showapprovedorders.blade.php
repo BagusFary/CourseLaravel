@@ -3,8 +3,6 @@
 @section('content')
 <div class="container">
     <h2>Approved Orders</h2>
-
-    {{ $dataOrder }}
     @if(Session::has('delete-message'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <i class="fa-regular fa-circle-check fa-xl"></i><strong> {{ Session::get('delete-message') }}</strong>
@@ -32,7 +30,6 @@
               <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteOrder-{{ $item->id }}">
                   <i class="fa-solid fa-xmark"></i>
               </button>          
-
        
             </td>
         </tr>
@@ -57,7 +54,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <form action="/cancel/{{ $item->id }}" method="POST">
+                  <form action="/delete-orders/{{ $item->id }}" method="POST">
                   @csrf
                   @method('delete')
                   <button type="submit" class="btn btn-outline-danger">Delete This Order</button>
