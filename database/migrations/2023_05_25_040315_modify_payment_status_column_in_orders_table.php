@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->enum('payment_status', ['unpaid', 'paid'])->change();
+            if (Schema::hasColumn('orders', 'payment-status')) {
+                $table->dropColumn('payment-status');
+                $table->enum('status', ['active', 'pending', 'cancel'])->default('pending');
+            }
         });
     }
 
@@ -22,7 +25,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->string('payment_status', 100)->change();
+            if (Schema::hasColumn('orders', 'payment-status')) {
+                $table->dropColumn('payment-status');
+            }
         });
     }
 };
