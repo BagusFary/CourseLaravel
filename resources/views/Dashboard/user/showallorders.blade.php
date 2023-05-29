@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <h2>Your Order List</h2>
-    {{ $dataOrder }}
     <table class="table table-secondary table-striped">
         <tr>
             <th>No</th>
