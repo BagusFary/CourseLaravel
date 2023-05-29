@@ -12,4 +12,10 @@ class Invoice extends Model
     protected $table = 'invoices';
     protected $primaryKey = 'id';
     protected $guarded = ['id'];
+
+
+    public function orders()
+    {
+        return $this->belongsTo(Order::class, 'order_id', 'id');
+    }
 }

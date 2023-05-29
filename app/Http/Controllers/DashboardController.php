@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Course;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,5 +40,10 @@ class DashboardController extends Controller
                             ->select(['course_id','price','status'])
                             ->get();
         return view('Dashboard.user.showallorders',['dataOrder' => $dataOrder]);
+    }
+
+    public function showAllUserCourses(){
+        $dataCourse = 
+        return view('Dashboard.user.showallcourses', ['dataCourse' => $dataCourse]);
     }
 }

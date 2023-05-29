@@ -24,4 +24,10 @@ class Order extends Model
     {
         return $this->belongsTo(Course::class, 'course_id', 'id');
     }
+    
+    
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class, 'order_id', 'id');
+    }
 }
