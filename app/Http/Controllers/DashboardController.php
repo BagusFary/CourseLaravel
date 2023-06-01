@@ -43,7 +43,7 @@ class DashboardController extends Controller
     }
 
     public function showAllUserCourses(){
-        $dataCourse = 
-        return view('Dashboard.user.showallcourses', ['dataCourse' => $dataCourse]);
+        // $dataCourse = 
+        // return view('Dashboard.user.showallcourses', ['dataCourse' => $dataCourse]);
     }
 }
