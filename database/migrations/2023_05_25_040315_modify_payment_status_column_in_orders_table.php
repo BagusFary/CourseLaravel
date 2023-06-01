@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            if (Schema::hasColumn('orders', 'payment-status')) {
-                $table->dropColumn('payment-status');
+            if (Schema::hasColumn('orders', 'payment_status')) {
+                $table->dropColumn('payment_status');
                 $table->enum('status', ['active', 'pending', 'cancel'])->default('pending');
             }
         });
