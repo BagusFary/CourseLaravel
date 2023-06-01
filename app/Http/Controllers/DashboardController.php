@@ -15,7 +15,7 @@ class DashboardController extends Controller
     }
 
     public function showAllCourses(){
-        $dataCourse = Course::get();
+        $dataCourse = Course::paginate(3);
         return view('Dashboard.admin.showallcourses',['dataCourse' => $dataCourse]);
     }
 
