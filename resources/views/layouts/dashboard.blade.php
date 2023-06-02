@@ -43,13 +43,22 @@
           <!-- Divider -->
           <hr class="sidebar-divider my-2">
 
+          
+
           <!-- Nav Item - Dashboard -->
           @can('user')
+          <div class="sidebar-heading">
+            Your Dashboard
+        </div>
           <li class="nav-item">
+            <a href="/course" class="nav-link collapsed">
+            <i class="fa-solid fa-cart-shopping fa-beat-fade"></i>
+            <span>Browse Course</span>
+            </a>
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fa fa-database"></i>
-                <span>Dashboard</span>
+                <i class="fa-solid fa-list-check"></i>
+                <span>Manage</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
