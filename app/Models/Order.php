@@ -25,7 +25,6 @@ class Order extends Model
         return $this->belongsTo(Course::class, 'course_id', 'id');
     }
     
-    
     public function invoice()
     {
         return $this->hasOne(Invoice::class, 'order_id', 'id');
