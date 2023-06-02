@@ -44,7 +44,16 @@ class DashboardController extends Controller
     }
 
     public function showAllUserCourses(){
-        $dataCourse = User::with('orders.invoice')->where('id',Auth::user()->id)->get();
+        $dataCourse = User::with(['orders' => function($query){
+            $query->where('status', 'active');
+        }, 
+        'course' => function($query){
+            $query->where('id', '');
+        },
+        'invoice' => function($query){
+            $query->where('status', 'active');
+        }])->where('id',Auth::user()->id)->get();
+        
         return view('Dashboard.user.showallcourses', ['dataCourse' => $dataCourse]);
     }
 }
