@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
    <h2>Your Course:</h2>
-   {{ $dataCourse }}
-    <div class="row">
+{{ $dataCourse }}
+   {{-- <div class="row">
      @forelse ($dataCourse as $item)
         <div class="col-md-4 mb-5 mt-3 d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
@@ -22,6 +22,6 @@
             <a href="/course" class="btn btn-outline-dark">See more Course here</a>
         </h2>
      @endforelse
-    </div>
+    </div> --}}
 </div>
 @endsection
