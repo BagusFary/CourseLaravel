@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Course;
 use App\Models\Invoice;
@@ -43,7 +44,7 @@ class DashboardController extends Controller
     }
 
     public function showAllUserCourses(){
-        // $dataCourse = 
-        // return view('Dashboard.user.showallcourses', ['dataCourse' => $dataCourse]);
+        $dataCourse = User::with('orders.invoice')->where('id',Auth::user()->id)->get();
+        return view('Dashboard.user.showallcourses', ['dataCourse' => $dataCourse]);
     }
 }
