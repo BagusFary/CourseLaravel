@@ -28,6 +28,6 @@ class Order extends Model
     
     public function invoice()
     {
-        return $this->belongsTo(Invoice::class, 'order_id', 'id');
+        return $this->hasOne(Invoice::class, 'order_id', 'id');
     }
 }
