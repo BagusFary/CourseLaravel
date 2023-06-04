@@ -56,7 +56,7 @@ class DashboardController extends Controller
             $query->select(['id','title','description','thumbnail','video']);
         }
         ])->where('id', Auth::user()->id)
-          ->select(['id','name','email'])->get();
+          ->select(['id','name','email'])->first();
         
         return view('Dashboard.user.showallcourses', ['dataCourse' => $dataCourse]);
     }
