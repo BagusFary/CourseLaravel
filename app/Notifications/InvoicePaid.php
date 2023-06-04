@@ -37,7 +37,7 @@ class InvoicePaid extends Notification
     {
         return (new MailMessage)
                     ->line("Your Order is been approved by admin!")
-                    ->action('Check Your Course!', url('/dashboard'))
+                    ->action('Check Your Course!', url('/dashboard/show-user-course'))
                     ->line('Thank you for ordering!');
     }
 
