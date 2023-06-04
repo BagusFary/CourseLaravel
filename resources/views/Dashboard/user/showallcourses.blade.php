@@ -3,7 +3,13 @@
 @section('content')
 <div class="container">
    <h2>Your Course:</h2>
-{{ $dataCourse }}
+{{-- @foreach ($dataCourse as $item)
+    {{ $item }}
+@endforeach --}}
+
+@foreach ($dataCourse[0]->orders as $item)
+    {{ $item->course->title }}
+@endforeach
    {{-- <div class="row">
      @forelse ($dataCourse as $item)
         <div class="col-md-4 mb-5 mt-3 d-flex justify-content-center">
