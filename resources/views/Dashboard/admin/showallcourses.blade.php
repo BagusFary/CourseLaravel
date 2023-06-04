@@ -20,5 +20,6 @@
         <h2>No Course Found:(</h2>
      @endforelse
     </div>
+    {{ $dataCourse->links() }}
 </div>
 @endsection

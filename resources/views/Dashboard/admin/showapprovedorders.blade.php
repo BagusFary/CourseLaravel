@@ -68,6 +68,7 @@
             <h3 class="d-flex justify-content-center">There is no approved order.</h3>
         @endforelse
     </table>
+    {{ $dataOrder->links() }}
 </div>
 
 
