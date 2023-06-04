@@ -23,7 +23,7 @@ class DashboardController extends Controller
     public function showAllOrders(){
         $dataOrder = Order::with(['user:id,name','course:id,title'])
                             ->where('status','pending')
-                            ->get();
+                            ->paginate(10);
         return view('Dashboard.admin.showallorders', ['dataOrder' => $dataOrder]);
     }
 
@@ -31,33 +31,42 @@ class DashboardController extends Controller
         $dataOrder = Order::with(['user:id,name','course:id,title'])
                             ->where('status', 'active')
                             ->orWhere('status', 'cancel')
-                            ->get();
+                            ->paginate(10);
         return view('Dashboard.admin.showapprovedorders', ['dataOrder' => $dataOrder]);
     }
 
     public function showAllUserOrders(){
-        $dataOrder = Order::with('course:id,title')
-                            ->where('user_id',Auth::user()->id)
-                            ->select(['course_id','price','status'])
-                            ->get();
-        return view('Dashboard.user.showallorders',['dataOrder' => $dataOrder]);
+        if(Auth::user()->role != 'user'){
+            return response()->view('Error.unauthorized');
+        } else {
+            $dataOrder = Order::with('course:id,title')
+                                ->where('user_id',Auth::user()->id)
+                                ->select(['course_id','price','status'])
+                                ->paginate(10);
+            return view('Dashboard.user.showallorders',['dataOrder' => $dataOrder]);
+        }
     }
 
     public function showAllUserCourses(){
-        $dataCourse = User::with(['orders' => function($query){
-            $query->where('status', 'active')
-                  ->select(['id','user_id','course_id','status']);
-        },
-        'orders.invoice'=> function($query){
-            $query->where('status', 'paid')
-                  ->select(['order_id','status']);
-        },
-        'orders.course' => function($query){
-            $query->select(['id','title','description','thumbnail','video']);
+
+        if(Auth::user()->role == 'user'){
+            $dataCourse = User::with(['orders' => function($query){
+                $query->where('status', 'active')
+                      ->select(['id','user_id','course_id','status']);
+            },
+            'orders.invoice'=> function($query){
+                $query->where('status', 'paid')
+                      ->select(['order_id','status']);
+            },
+            'orders.course' => function($query){
+                $query->select(['id','title','description','thumbnail','video']);
+            }
+            ])->where('id', Auth::user()->id)
+              ->select(['id','name','email'])->paginate(3);
+            
+            return view('Dashboard.user.showallcourses', ['dataCourse' => $dataCourse]);
+        } else {
+            return response()->view('Error.unauthorized');
         }
-        ])->where('id', Auth::user()->id)
-          ->select(['id','name','email'])->first();
-        
-        return view('Dashboard.user.showallcourses', ['dataCourse' => $dataCourse]);
     }
 }
