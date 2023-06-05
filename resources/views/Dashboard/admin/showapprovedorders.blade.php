@@ -10,7 +10,7 @@
         </div>
     @endif
     <div class="dropdown mb-4 d-flex justify-content-end">
-      <button class="btn btn-primary dropdown-toggle" type="button"
+      {{-- <button class="btn btn-primary dropdown-toggle" type="button"
           id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
           Dropdown
@@ -20,7 +20,7 @@
           <a class="dropdown-item" href="#">Action</a>
           <a class="dropdown-item" href="#">Another action</a>
           <a class="dropdown-item" href="#">Something else here</a>
-      </div>
+      </div> --}}
   </div>
     <table class="table table-secondary table-striped">
         <tr>
