@@ -69,7 +69,7 @@ Start the server
 Email    : admin@gmail.com\
 Password : 12345678
 
-- User
+- User\
 Password for all users email is '12345678'
 
 
