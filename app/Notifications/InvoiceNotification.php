@@ -7,16 +7,17 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class InvoiceCancel extends Notification
+class InvoiceNotification extends Notification
 {
     use Queueable;
+    protected $invoiceData;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($invoiceData)
     {
-        //
+        $this->invoiceData = $invoiceData;
     }
 
     /**
@@ -35,9 +36,9 @@ class InvoiceCancel extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line("Your Order is canceled by admin")
-                    ->action('Order again here!', url('/course'))
-                    ->line('Thank You!');
+                    ->line($this->invoiceData['text'])
+                    ->action($this->invoiceData['body'], $this->invoiceData['url'])
+                    ->line($this->invoiceData['thankyou']);
     }
 
     /**
