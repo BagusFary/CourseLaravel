@@ -28,7 +28,11 @@ Install dependencies
 
 ```bash
   cp .env.example .env 
-  configure your env and change filesystem disk to public
+```
+```bash
+   configure your env 
+   change FILESYSTEM_DISK to public
+   change QUEUE_CONNECTION to database
 ```
 ```bash
   Configure your mailtrap to set up mail notifications
@@ -57,6 +61,9 @@ Start the server
 ```
 ```bash
   php artisan serve
+```
+```bash
+  php artisan queue:work
 ```
 
 
