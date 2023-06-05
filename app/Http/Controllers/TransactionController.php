@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\OrderJob;
 use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Course;
@@ -54,8 +55,16 @@ class TransactionController extends Controller
             'status' => 'paid', 
         ]);
 
+        $users = $order->user;
 
-        Notification::send($order->user,new InvoicePaid());
+        $invoiceData = [
+            'text' => "Your order has been approved by admin!",
+            'body' => "Check your course here",
+            'url' => url('/course/show-user-courses'),
+            'thankyou' => "Thank you for ordering!"
+        ];
+
+        dispatch(new OrderJob($users, $invoiceData))->delay(now()->addSeconds(20));
 
         if($invoice){
             Session::flash('approve-message','Approve Order Successfull');
@@ -80,7 +89,16 @@ class TransactionController extends Controller
             'status' => 'cancel', 
         ]);
 
-        Notification::send($order->user,new InvoiceCancel());
+        $users = $order->user;
+
+        $invoiceData = [
+            'text' => 'Your order is canceled by Admin',
+            'body' => 'Order again here!',
+            'url' => url('/course'),
+            'thankyou' => 'Thank You!'
+        ];
+
+        dispatch(new OrderJob($users, $invoiceData))->delay(now()->addSeconds(20));
 
         if($invoice){
             Session::flash('cancel-message','Cancel Order Successfull');
@@ -91,6 +109,7 @@ class TransactionController extends Controller
     }
 
     public function deleteOrders($id){
+
         $deleteOrders = Order::findOrFail($id);
 
         $deleteOrders->delete();
@@ -100,6 +119,6 @@ class TransactionController extends Controller
         } else {
             Session::flash('delete-message','Delete Order Failed');
         }
-        return redirect('/show-approved-orders');
+        return redirect(url()->previous());
     }
 }

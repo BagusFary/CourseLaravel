@@ -23,7 +23,7 @@ class DashboardController extends Controller
     public function showAllOrders(){
         $dataOrder = Order::with(['user:id,name','course:id,title'])
                             ->where('status','pending')
-                            ->paginate(10);
+                            ->paginate(7);
         return view('Dashboard.admin.showallorders', ['dataOrder' => $dataOrder]);
     }
 
@@ -31,7 +31,7 @@ class DashboardController extends Controller
         $dataOrder = Order::with(['user:id,name','course:id,title'])
                             ->where('status', 'active')
                             ->orWhere('status', 'cancel')
-                            ->paginate(10);
+                            ->paginate(7);
         return view('Dashboard.admin.showapprovedorders', ['dataOrder' => $dataOrder]);
     }
 
