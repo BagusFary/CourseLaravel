@@ -28,6 +28,7 @@ Install dependencies
 
 ```bash
   cp .env.example .env 
+  configure your env and change filesystem disk to public
 ```
 ```bash
   Configure your mailtrap to set up mail notifications
