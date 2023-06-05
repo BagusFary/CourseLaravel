@@ -24,7 +24,7 @@
                 <a href="/course" class="btn btn-outline-dark">See more Course here</a>
         </div>
      @endforelse
-     {{ $dataCourse->links() }}
+        {{ $dataCourse->links() }}
     </div>
 </div>
 @endsection

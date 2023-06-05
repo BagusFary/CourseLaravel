@@ -15,7 +15,11 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $item->course->title }}</td>
             <td>Rp.{{ number_format($item->price,2,',','.'); }}</td>
-            <td>{{ $item->status }}</td>
+            <td>@if ($item->status == 'active')
+                paid
+                @else
+                waiting 
+            @endif</td>
         </tr>
         @empty
             <h3 class="d-flex justify-content-center">There is no order</h3>
