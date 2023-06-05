@@ -9,6 +9,19 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
+    <div class="dropdown mb-4 d-flex justify-content-end">
+      <button class="btn btn-primary dropdown-toggle" type="button"
+          id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Dropdown
+      </button>
+      <div class="dropdown-menu animated--fade-in"
+          aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+  </div>
     <table class="table table-secondary table-striped">
         <tr>
             <th>Order ID</th>
