@@ -30,7 +30,7 @@ Install dependencies
   cp .env.example .env 
 ```
 ```bash
-  Configure your mailtrap you set up mail notifications
+  Configure your mailtrap to set up mail notifications
 ```
 ```bash
   composer install
