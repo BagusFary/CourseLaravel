@@ -65,8 +65,8 @@ Start the server
 
 ## User and Admin Login
 
-- Admin
-Email    : admin@gmail.com__
+- Admin\
+Email    : admin@gmail.com
 
 Password : 12345678
 
