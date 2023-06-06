@@ -60,7 +60,7 @@ class TransactionController extends Controller
         $invoiceData = [
             'text' => "Your order has been approved by admin!",
             'body' => "Check your course here",
-            'url' => url('/course/show-user-courses'),
+            'url' => url('/show-user-courses'),
             'thankyou' => "Thank you for ordering!"
         ];
 
