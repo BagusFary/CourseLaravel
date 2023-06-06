@@ -20,11 +20,11 @@
                     <video src={{ asset('/storage/video/'. $dataCourse->video) }} class="card-img-top" controlsList="nodownload" oncontextmenu="return false;" muted autoplay loop>
                 </div>
                 <div class="col-md-6">
-                    <h1 class="display-5 fw-bolder">{{ $dataCourse->title }}</h1>
+                    <h1 class="display-5 title">{{ $dataCourse->title }}</h1>
                     <div class="fs-5 mb-5">
                         <span>Rp.{{ number_format($dataCourse->price,2,',','.') }}</span>
                     </div>
-                    <p class="lead">{{ $dataCourse->description }}</p>
+                    <p class="lead title">{{ $dataCourse->description }}</p>
                     <div class="d-flex">
                       
                         <button type="button" class="btn btn-outline-dark flex-shrink-0" data-bs-toggle="modal" data-bs-target="#orderModal">
