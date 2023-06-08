@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/show-user-orders', [DashboardController::class, 'showAllUserOrders']);
     Route::get('/show-user-courses', [DashboardController::class, 'showAllUserCourses']);
+    Route::get('/invoice-detail/{id}', [DashboardController::class, 'invoiceDetail']);
     Route::get('/orders/{id}', [TransactionController::class, 'orderDetail']);
     Route::post('/processing-orders/{id}', [TransactionController::class, 'orders']);
 });
