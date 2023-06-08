@@ -45,7 +45,10 @@
                             <a class="nav-link active" href="/course">Course</a>
                           </li>
                     </ul>
-
+                    <form action="" method="get" class="d-flex" role="search">
+                        <input class="form-control me-2" name="keyword" type="search" placeholder="Find here.." aria-label="Search">
+                        <button class="btn btn-outline-dark" type="submit">Search</button>
+                    </form>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
