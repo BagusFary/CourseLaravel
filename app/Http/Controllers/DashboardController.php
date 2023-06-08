@@ -42,9 +42,9 @@ class DashboardController extends Controller
         if(Auth::user()->role != 'user'){
             return response()->view('Error.unauthorized');
         } else {
-            $dataOrder = Order::with('course:id,title')
-                                ->where('user_id',Auth::user()->id)
-                                ->select(['course_id','price','status'])
+            $dataOrder = Order::where('user_id', Auth::user()->id)
+                                ->with('course:id,title,description,thumbnail,price')                               
+                                ->select(['id','course_id','price','status'])                             
                                 ->paginate(10);
             return view('Dashboard.user.showallorders',['dataOrder' => $dataOrder]);
         }
@@ -72,5 +72,13 @@ class DashboardController extends Controller
         } else {
             return response()->view('Error.unauthorized');
         }
+    }
+
+    public function invoiceDetail($id){
+        
+        $invoiceData = Invoice::with(['orders:id,user_id,course_id,created_at','orders.user:id,name,email', 'orders.course:id,title,thumbnail,price'])
+                            ->where('order_id', '=', $id)
+                            ->get();
+        return view('Dashboard.user.invoicedetail', ['invoiceData' => $invoiceData]);
     }
 }
