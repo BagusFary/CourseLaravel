@@ -9,7 +9,7 @@
         </p>
         
         <p class="lead mt-2">Waiting for Admin Approvement</p>
-        <a href="/course" class="btn btn-outline-dark">Go Back</a>
+        <a href="/show-user-orders" class="btn btn-outline-dark">Check your orders</a>
     </div>
 </div>
 @endsection
