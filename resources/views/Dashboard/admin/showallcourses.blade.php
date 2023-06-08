@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="container">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <form action="" method="get" class="d-flex" role="search">
+                <input class="form-control me-2" name="keyword" type="search" placeholder="Search Course" aria-label="Search">
+                <button class="btn btn-outline-dark" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
     <div class="row">
      @forelse ($dataCourse as $item)
         <div class="col-md-4 mb-5 mt-3 d-flex justify-content-center">
