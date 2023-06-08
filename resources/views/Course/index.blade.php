@@ -16,7 +16,11 @@
                 </div>
             </div>
             @empty
-            <h2>No Course Found:(</h2>
+            <div class="d-flex justify-content-center">
+                <div class="mt-5">
+                    <h2>No Course Found :(</h2>
+                </div>
+            </div>
          @endforelse
         </div>
         <div class="mb-3">

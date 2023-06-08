@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-md-6">
                     <h1 class="display-5 title">{{ $dataCourse->title }}</h1>
-                    <div class="fs-5 mb-5">
+                    <div class="fs-5 mb-3">
                         <span>Rp.{{ number_format($dataCourse->price,2,',','.') }}</span>
                     </div>
                     <p class="lead title">{{ $dataCourse->description }}</p>
