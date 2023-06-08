@@ -15,8 +15,11 @@ class DashboardController extends Controller
         return view('Dashboard.index');
     }
 
-    public function showAllCourses(){
-        $dataCourse = Course::paginate(3);
+    public function showAllCourses(Request $request){
+        $keyword = $request->keyword;
+        $dataCourse = Course::where('title', 'LIKE', '%'.$keyword.'%')
+                            ->paginate(3)
+                            ->withQueryString();
         return view('Dashboard.admin.showallcourses',['dataCourse' => $dataCourse]);
     }
 
@@ -48,6 +51,7 @@ class DashboardController extends Controller
     }
 
     public function showAllUserCourses(){
+        
 
         if(Auth::user()->role == 'user'){
             $dataCourse = User::with(['orders' => function($query){

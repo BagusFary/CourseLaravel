@@ -10,8 +10,9 @@ use App\Http\Requests\UpdateCourseRequest;
 
 class CourseController extends Controller
 {
-    public function index(){
-        $dataCourse = Course::paginate(3);
+    public function index(Request $request){
+        $keyword = $request->keyword;
+        $dataCourse = Course::where('title', 'LIKE', '%'.$keyword.'%')->paginate(3)->withQueryString();
         return view('Course.index', ['dataCourse' => $dataCourse]);
     }
 
