@@ -37,7 +37,7 @@
 
           <!-- Sidebar - Brand -->
           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/course">
-              <div class="sidebar-brand-text mx-3">Laravel Course</div>
+              <div class="sidebar-brand-text mx-3"><i class="fa-brands fa-laravel fa-2xl"></i> Laravel Course</div>
           </a>
 
           <!-- Divider -->

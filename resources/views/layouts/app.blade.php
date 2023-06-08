@@ -32,7 +32,7 @@
         <nav class="navbar navbar-expand-md  navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="/course">
-                    Laravel Course
+                    <i class="fa-brands fa-laravel fa-2xl"></i> Laravel Course
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -45,10 +45,14 @@
                             <a class="nav-link active" href="/course">Course</a>
                           </li>
                     </ul>
+                    @if (Auth::check())
                     <form action="" method="get" class="d-flex" role="search">
                         <input class="form-control me-2" name="keyword" type="search" placeholder="Find here.." aria-label="Search">
                         <button class="btn btn-outline-dark" type="submit">Search</button>
                     </form>
+                        
+                    @endif
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
