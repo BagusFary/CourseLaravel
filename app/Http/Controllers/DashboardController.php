@@ -79,6 +79,7 @@ class DashboardController extends Controller
         $invoiceData = Invoice::with(['orders:id,user_id,course_id,created_at','orders.user:id,name,email', 'orders.course:id,title,thumbnail,price'])
                             ->where('order_id', '=', $id)
                             ->get();
-        return view('Dashboard.user.invoicedetail', ['invoiceData' => $invoiceData]);
+
+            return view('Dashboard.user.invoicedetail', ['invoiceData' => $invoiceData]);   
     }
 }
