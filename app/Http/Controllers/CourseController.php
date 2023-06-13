@@ -30,6 +30,13 @@ class CourseController extends Controller
 
     public function store(CreateCourseRequest $request){
 
+        foreach(explode(" ", $request->name_tags) as $item){
+            echo $item;
+            echo "<br>";
+        }
+
+        exit();
+
         DB::transaction(function () use($request){
             $videoExtension = $request->file('video')->getClientOriginalExtension();
             $videoName = "video"."-".now()->timestamp.".".$videoExtension;
@@ -48,10 +55,13 @@ class CourseController extends Controller
                 'video' => $videoName,
                 'price' => $request->price,
             ]);
-    
-            $tag = Tag::create([
-                'name_tags' => $request->name_tags
-            ]);
+            foreach(explode(" ", $request->name_tags) as $item){
+                $tag = Tag::create([
+
+                    'name_tags' => $item
+                    
+                ]);
+            }
 
             CourseTag::create([
                 'course_id' => $course->id,
