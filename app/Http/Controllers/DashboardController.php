@@ -67,7 +67,8 @@ class DashboardController extends Controller
             }
             ])->where('id', Auth::user()->id)
               ->select(['id','name','email'])->paginate(3);
-            
+             
+              
             return view('Dashboard.user.showallcourses', ['dataCourse' => $dataCourse]);
         } else {
             return response()->view('Error.unauthorized');
