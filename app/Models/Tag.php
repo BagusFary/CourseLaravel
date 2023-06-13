@@ -10,4 +10,10 @@ class Tag extends Model
     use HasFactory;
     protected $table = 'tags';
     protected $guarded = ['id'];
+
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'course_tag', 'tag_id', 'course_id');
+    }
 }

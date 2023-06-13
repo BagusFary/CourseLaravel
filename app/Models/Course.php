@@ -17,11 +17,6 @@ class Course extends Model
         return $this->hasMany(Order::class, 'course_id', 'id');
     }
 
-    public function courseTag()
-    {
-        return $this->hasMany(CourseTag::class, 'course_id', 'id');
-    }
-
     public function videos()
     {
         return $this->hasMany(Video::class, 'course_id', 'id');
@@ -29,7 +24,7 @@ class Course extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'course_tag', 'course-id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'course_tag', 'course_id', 'tag_id');
     }
 
 
