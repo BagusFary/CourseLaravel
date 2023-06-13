@@ -74,7 +74,7 @@ class DashboardController extends Controller
         }
     }
 
-    public function invoiceDetail($id){
+   public function invoiceDetail($id){
         
         if(Auth::user()->role == "user"){
             $invoiceData = Invoice::with(['orders:id,user_id,course_id,created_at','orders.user:id,name,email', 'orders.course:id,title,thumbnail,price'])
