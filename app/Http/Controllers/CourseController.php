@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Course;
+use App\Models\CourseTag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CreateCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
@@ -27,22 +30,34 @@ class CourseController extends Controller
 
     public function store(CreateCourseRequest $request){
 
-        $videoExtension = $request->file('video')->getClientOriginalExtension();
-        $videoName = "video"."-".now()->timestamp.".".$videoExtension;
+        DB::transaction(function () use($request){
+            $videoExtension = $request->file('video')->getClientOriginalExtension();
+            $videoName = "video"."-".now()->timestamp.".".$videoExtension;
 
-        $thumbnailExtension = $request->file('thumbnail')->getClientOriginalExtension();
-        $thumbnailName = now()->timestamp.".".$thumbnailExtension;
+            $thumbnailExtension = $request->file('thumbnail')->getClientOriginalExtension();
+            $thumbnailName = now()->timestamp.".".$thumbnailExtension;
+            
+            $request->file('thumbnail')->storeAs('thumbnail', $thumbnailName);
+            $request->file('video')-> storeAs('video',$videoName);
         
-        $request->file('thumbnail')->storeAs('thumbnail', $thumbnailName);
-        $request->file('video')-> storeAs('video',$videoName);
+        
+           $course =  Course::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'thumbnail' => $thumbnailName,
+                'video' => $videoName,
+                'price' => $request->price,
+            ]);
+    
+            $tag = Tag::create([
+                'name_tags' => $request->name_tags
+            ]);
 
-        Course::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'thumbnail' => $thumbnailName,
-            'video' => $videoName,
-            'price' => $request->price,
-        ]);
+            CourseTag::create([
+                'course_id' => $course->id,
+                'tag_id' => $tag->id
+            ]);
+        });
 
 
         return redirect('/show-all-courses');
