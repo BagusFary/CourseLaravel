@@ -31,8 +31,8 @@ Install dependencies
 ```
 ```bash
    configure your env 
-   change FILESYSTEM_DISK to public
-   change QUEUE_CONNECTION to database
+   FILESYSTEM_DISK=public
+   QUEUE_CONNECTION=database
 ```
 ```bash
   Configure your mailtrap to set up mail notifications
