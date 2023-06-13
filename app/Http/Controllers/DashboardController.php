@@ -74,12 +74,15 @@ class DashboardController extends Controller
         }
     }
 
-    public function invoiceDetail($id){
+   public function invoiceDetail($id){
         
-        $invoiceData = Invoice::with(['orders:id,user_id,course_id,created_at','orders.user:id,name,email', 'orders.course:id,title,thumbnail,price'])
-                            ->where('order_id', '=', $id)
-                            ->get();
-
-            return view('Dashboard.user.invoicedetail', ['invoiceData' => $invoiceData]);   
+        if(Auth::user()->role == "user"){
+            $invoiceData = Invoice::with(['orders:id,user_id,course_id,created_at','orders.user:id,name,email', 'orders.course:id,title,thumbnail,price'])
+                                ->where('order_id', '=', $id)
+                                ->get();
+            return view('Dashboard.user.invoicedetail', ['invoiceData' => $invoiceData]);
+        } else {
+            return response()->view('Error.unauthorized');
+        }
     }
 }
