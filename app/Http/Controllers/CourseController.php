@@ -36,8 +36,6 @@ class CourseController extends Controller
         $request->file('thumbnail')->storeAs('thumbnail', $thumbnailName);
         $request->file('video')-> storeAs('video',$videoName);
 
-        
-        
         Course::create([
             'title' => $request->title,
             'description' => $request->description,

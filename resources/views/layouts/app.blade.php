@@ -43,7 +43,7 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link active" href="/course">Course</a>
-                          </li>
+                        </li>
                     </ul>
                     @if (Auth::check())
                     <form action="" method="get" class="d-flex" role="search">

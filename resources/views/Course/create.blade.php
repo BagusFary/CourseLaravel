@@ -39,6 +39,10 @@
                     <input type="number" name="price" class="form-control" placeholder="Price" required>
                 </div>
             </div>
+            <div class="mb-3">
+                <label for="name_tags">Tags</label>
+                <input type="text" class="form-control" name="name_tags" id="name_tags" placeholder="Tags" required>
+            </div>
             <div class="mb-3 ">
                 <button type="submit" class="btn btn-success">Create Course</button>
                 <a href="/dashboard" class="btn btn-warning">Back/Cancel</a>
