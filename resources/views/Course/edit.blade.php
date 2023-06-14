@@ -56,7 +56,7 @@
                 </div>
                 <div class="mb-2 mx-3">
                     <label for="tags" class="form-label">Tags</label>
-                    <input type="text" name="tags" class="form-control" id="tags" placeholder="" value="">
+                    <input type="text" name="tags" class="form-control" id="tags" placeholder="" value="{{ implode(" ",$tagName) }}">
                 </div>
                 <div class="mb-3 mx-3">
                     <button type="submit" class="btn btn-success">Save</button>
