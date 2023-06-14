@@ -17,6 +17,9 @@
                 <img src="{{ asset('storage/thumbnail/'. $item->thumbnail) }}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{ $item->title }}</h5>
+                    @foreach ($item->tags as $tag)
+                        <span class="badge text-bg-secondary">{{ $tag->name_tags }}</span>
+                    @endforeach
                   <p class="card-text">{{ $item->description }}</p>
                   <p>Rp.{{ number_format($item->price,2,',','.'); }}</p>
                   <a href="#" class="btn btn-success disabled">Course Detail</a>
