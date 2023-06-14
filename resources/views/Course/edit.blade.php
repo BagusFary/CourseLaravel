@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    {{ $dataTag }}
+
     <h2 class="d-flex justify-content-center">Edit Course</h2>
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -54,13 +54,9 @@
                         <input type="number" name="price" class="form-control" placeholder="Price" value="{{ $dataCourse->price }}" required>
                     </div>
                 </div>
-                <div class="mb-3 mx-3">
-                    <label for="tag">Tags<label>
-                        <div class="input-group mb-3">
-
-                        <input type="text" name="tag" class="form-control" placeholder="Tags" value="" required>
-
-                    </div>
+                <div class="mb-2 mx-3">
+                    <label for="tags" class="form-label">Tags</label>
+                    <input type="text" name="tags" class="form-control" id="tags" placeholder="" value="">
                 </div>
                 <div class="mb-3 mx-3">
                     <button type="submit" class="btn btn-success">Save</button>
