@@ -9,6 +9,9 @@
                     <img src="{{ asset('storage/thumbnail/'.$item->thumbnail) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">{{ $item->title }}</h5>
+                        @foreach ($item->tags as $tag)
+                             <a href="/course?keyword={{ $tag->name_tags }}"><span class="badge text-bg-secondary">{{ $tag->name_tags }}</span></a>
+                        @endforeach
                       <p class="card-text">{{ $item->description }}</p>
                       <p>Rp.{{ number_format($item->price,2,',','.'); }}</p>
                       <a href="/detail-course/{{ $item->id }}" class="btn btn-outline-dark">Course Detail</a>

@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container">
+    {{ $dataTag }}
     <h2 class="d-flex justify-content-center">Edit Course</h2>
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -19,6 +20,9 @@
             <video src="{{ asset('storage/video/'. $dataCourse->video) }}" class="card-img-top" controlsList="nodownload" oncontextmenu="return false;" muted autoplay loop></video>
             <div class="card-body">
               <h5 class="card-title">{{ $dataCourse->title }}</h5>
+              @foreach ($dataCourse->tags as $tag)
+                <a href="/course?keyword={{ $tag->name_tags }}"><span class="badge text-bg-secondary">{{ $tag->name_tags }}</span></a>
+              @endforeach
               <p class="card-text">{{ $dataCourse->description }}</p>
               <p>Rp.{{ number_format($dataCourse->price,2,',','.'); }}</p>
               <a href="#" class="btn btn-success disabled">Course Detail</a>
@@ -43,15 +47,19 @@
                     <label for="video">Video</label>
                     <input type="file" name="video" class="form-control" id="video">
                 </div>
-                {{-- <div class="mb-2 mx-3">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="number" name="price" class="form-control" id="price" placeholder="Rp.{{ number_format($dataCourse->price,2,',','.'); }}" value="{{ $dataCourse->price }}">
-                </div> --}}
                 <div class="mb-3 mx-3">
                     <label for="price">Price</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Rp.</span>
                         <input type="number" name="price" class="form-control" placeholder="Price" value="{{ $dataCourse->price }}" required>
+                    </div>
+                </div>
+                <div class="mb-3 mx-3">
+                    <label for="tag">Tags<label>
+                        <div class="input-group mb-3">
+
+                        <input type="text" name="tag" class="form-control" placeholder="Tags" value="" required>
+
                     </div>
                 </div>
                 <div class="mb-3 mx-3">
