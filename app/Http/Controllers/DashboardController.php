@@ -17,7 +17,8 @@ class DashboardController extends Controller
 
     public function showAllCourses(Request $request){
         $keyword = $request->keyword;
-        $dataCourse = Course::where('title', 'LIKE', '%'.$keyword.'%')
+        $dataCourse = Course::with('tags:id,name_tags')
+                            ->where('title', 'LIKE', '%'.$keyword.'%')
                             ->paginate(3)
                             ->withQueryString();
         return view('Dashboard.admin.showallcourses',['dataCourse' => $dataCourse]);

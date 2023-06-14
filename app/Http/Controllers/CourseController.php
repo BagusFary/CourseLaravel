@@ -15,7 +15,9 @@ class CourseController extends Controller
 {
     public function index(Request $request){
         $keyword = $request->keyword;
-        $dataCourse = Course::where('title', 'LIKE', '%'.$keyword.'%')->paginate(3)->withQueryString();
+        $dataCourse = Course::with('tags:id,name_tags')
+                            ->where('title', 'LIKE', '%'.$keyword.'%')
+                            ->paginate(3)->withQueryString();
         return view('Course.index', ['dataCourse' => $dataCourse]);
     }
 
@@ -29,13 +31,6 @@ class CourseController extends Controller
     }
 
     public function store(CreateCourseRequest $request){
-
-        foreach(explode(" ", $request->name_tags) as $item){
-            echo $item;
-            echo "<br>";
-        }
-
-        exit();
 
         DB::transaction(function () use($request){
             $videoExtension = $request->file('video')->getClientOriginalExtension();
@@ -55,18 +50,27 @@ class CourseController extends Controller
                 'video' => $videoName,
                 'price' => $request->price,
             ]);
+            
+            $tags = explode(" ", $request->name_tags);
+            $count = count($tags);
+
             foreach(explode(" ", $request->name_tags) as $item){
-                $tag = Tag::create([
+                Tag::create([
 
                     'name_tags' => $item
                     
                 ]);
             }
 
-            CourseTag::create([
-                'course_id' => $course->id,
-                'tag_id' => $tag->id
-            ]);
+            $tagId = Tag::orderBy('id', 'DESC')->take($count)->get();
+            foreach($tagId as $tag){
+                CourseTag::create([
+                    'course_id' => $course->id,
+                    'tag_id' => $tag->id,
+                ]);
+                
+            }
+
         });
 
 
@@ -74,8 +78,14 @@ class CourseController extends Controller
     }
 
     public function edit($id){
-        $dataCourse = Course::findOrFail($id);
-        return view('Course.edit', ['dataCourse' => $dataCourse]);
+        $dataCourse = Course::with('tags:id,name_tags')
+                            ->findOrFail($id);
+                            foreach($dataCourse->tags as $tag){
+                                
+                            }
+                            exit();
+                            
+        return view('Course.edit', ['dataTag' => $dataTag, 'dataCourse' => $dataCourse]);
     }
 
     public function update(UpdateCourseRequest $request, $id){
@@ -127,20 +137,26 @@ class CourseController extends Controller
     }
 
     public function delete($id){
-        $dataCourse = Course::findOrFail($id);
+        $dataCourse = Course::with('tags:id,name_tags')
+                            ->findOrFail($id);
         return view('Course.delete', ['dataCourse' => $dataCourse]);
     }
 
     public function destroy($id){
-        $dataCourse = Course::findOrFail($id);
-        Storage::delete('thumbnail/'. $dataCourse->thumbnail);
-        Storage::delete('video/'. $dataCourse->video);
-        $dataCourse->delete();
+        DB::transaction(function() use($id){
+            $dataCourse = Course::with('tags:id,name_tags')
+                                ->findOrFail($id);
+            Storage::delete('thumbnail/'. $dataCourse->thumbnail);
+            Storage::delete('video/'. $dataCourse->video);
+            $dataCourse->delete();
+            
+            foreach($dataCourse->tags as $tag){
+                $deleteTag = Tag::findOrFail($tag->id);
+                $deleteTag->delete();
+            }
+        });
+        
         return redirect('/show-all-courses');
-    }
-
-    public function tes(){
-        return view('Course.tes');
     }
 
 }
