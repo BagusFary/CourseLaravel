@@ -80,12 +80,8 @@ class CourseController extends Controller
     public function edit($id){
         $dataCourse = Course::with('tags:id,name_tags')
                             ->findOrFail($id);
-                            foreach($dataCourse->tags as $tag){
-                                
-                            }
-                            exit();
                             
-        return view('Course.edit', ['dataTag' => $dataTag, 'dataCourse' => $dataCourse]);
+        return view('Course.edit', [ 'dataCourse' => $dataCourse]);
     }
 
     public function update(UpdateCourseRequest $request, $id){
