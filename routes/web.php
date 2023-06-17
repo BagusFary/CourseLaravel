@@ -40,6 +40,9 @@ Route::group(['middleware' => ['auth','admin']], function(){
     Route::post('/store-course', [CourseController::class, 'store']);
     Route::get('/edit-course/{id}', [CourseController::class, 'edit']);
     Route::get('/edit-tags/{id}', [CourseController::class, 'editTags']);
+    Route::post('/store-tags/{id}', [CourseController::class, 'storeTags']);
+    Route::delete('/delete-tags/{id}', [CourseController::class, 'deleteTags']);
+    Route::put('/update-tags/{id}', [CourseController::class, 'updateTags']);
     Route::put('/update-course/{id}', [CourseController::class, 'update']);
     Route::get('/delete-course/{id}', [CourseController::class, 'delete']);
     Route::delete('/destroy-course/{id}', [CourseController::class, 'destroy']);
