@@ -161,4 +161,13 @@ class CourseController extends Controller
         return redirect('/show-all-courses');
     }
 
+    public function editTags($id){
+        $dataTags = CourseTag::with('tags:id_name_tags')
+                            ->where('course_id', $id)
+                            ->get();
+
+                            dd($dataTags);
+        return view('Course.edit-tags', ['dataTags' => $dataTags]);
+    }
+
 }
