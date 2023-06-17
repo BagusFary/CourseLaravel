@@ -162,12 +162,51 @@ class CourseController extends Controller
     }
 
     public function editTags($id){
-        $dataTags = CourseTag::with('tags:id_name_tags')
-                            ->where('course_id', $id)
+        $dataTags = Course::where('id', $id)
+                            ->with('tags:id,name_tags')
                             ->get();
 
-                            dd($dataTags);
         return view('Course.edit-tags', ['dataTags' => $dataTags]);
     }
+
+    public function updateTags(Request $request, $id){
+        $tags = Tag::findOrFail($id);
+        $tags->update([
+            'name_tags' => $request->name_tags
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function storeTags(Request $request, $id){
+
+        $tags = explode(" ", $request->name_tags);
+
+        $count = count($tags);
+
+        foreach($tags as $tag){
+            Tag::create([
+                'name_tags' => $tag
+            ]);
+        }
+
+        $tagId = Tag::orderby('id', 'DESC')->take($count)->select('id')->get();
+        foreach($tagId as $tag){
+            CourseTag::create([
+                'course_id' => $id,
+                'tag_id' => $tag->id
+            ]);
+        }
+        
+        return redirect()->back();
+        
+    }
+
+    public function deleteTags($id){
+        $tags = Tag::findOrFail($id);
+        $tags->delete();
+        return redirect()->back();
+    }
+
 
 }
