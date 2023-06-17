@@ -36,12 +36,12 @@
                 <label for="price">Price</label>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Rp.</span>
-                    <input type="number" name="price" class="form-control" placeholder="Price" required>
+                    <input type="number" name="price" class="form-control" placeholder="Price" value="{{ old('price') }}" required>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="name_tags">Tags</label>
-                <input type="text" class="form-control" name="name_tags" id="name_tags" placeholder="Tags" required>
+                <input type="text" class="form-control" name="name_tags" id="name_tags" placeholder="Tags" value="{{ old('name_tags') }}" required>
             </div>
             <div class="mb-3 ">
                 <button type="submit" class="btn btn-success">Create Course</button>

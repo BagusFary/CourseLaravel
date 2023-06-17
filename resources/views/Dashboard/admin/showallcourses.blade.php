@@ -22,7 +22,7 @@
                     @endforeach
                   <p class="card-text">{{ $item->description }}</p>
                   <p>Rp.{{ number_format($item->price,2,',','.'); }}</p>
-                  <a href="#" class="btn btn-success disabled">Course Detail</a>
+                  <a href="/edit-tags/{{ $item->id }}" class="btn btn-outline-secondary">Edit Tags</a>
                   <a class="btn btn-warning" href="/edit-course/{{ $item->id }}">Edit Course</a>
                 </div>
             </div>
