@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth','admin']], function(){
     Route::get('/create-course', [CourseController::class, 'create']);
     Route::post('/store-course', [CourseController::class, 'store']);
     Route::get('/edit-course/{id}', [CourseController::class, 'edit']);
+    Route::get('/edit-tags/{id}', [CourseController::class, 'editTags']);
     Route::put('/update-course/{id}', [CourseController::class, 'update']);
     Route::get('/delete-course/{id}', [CourseController::class, 'delete']);
     Route::delete('/destroy-course/{id}', [CourseController::class, 'destroy']);
