@@ -3,7 +3,10 @@
 @section('content')
 <div class="container">
 
-    <h2>List Tags</h2>
+  <h2 class="mb-2">List Tags</h2>
+  @foreach ($dataTags as $item)
+      <h4>{{ $item->title }}</h4>
+  @endforeach
     
    
     @if(Session::has('approve-message'))
