@@ -8,6 +8,7 @@ use App\Models\CourseTag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\CreateCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 
@@ -17,7 +18,11 @@ class CourseController extends Controller
         $keyword = $request->keyword;
         $dataCourse = Course::with('tags:id,name_tags')
                             ->where('title', 'LIKE', '%'.$keyword.'%')
-                            ->paginate(3)->withQueryString();
+                            ->orWhereHas('tags', function($query) use($keyword){
+                                $query->where('name_tags', 'LIKE', '%'.$keyword.'%');
+                            })
+                            ->paginate(3)
+                            ->withQueryString();
         return view('Course.index', ['dataCourse' => $dataCourse]);
     }
 
