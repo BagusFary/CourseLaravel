@@ -208,6 +208,7 @@ class CourseController extends Controller
     }
 
     public function deleteTags($id){
+        
         $tags = Tag::findOrFail($id);
         $tags->delete();
         return redirect()->back();
