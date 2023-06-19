@@ -20,11 +20,6 @@ class CourseSeeder extends Seeder
             "thumbnail" => 'courseimageandvideo/3.jpg',
             "video" => 'courseimageandvideo/Laravel in 100 Seconds.mp4'
         ]);
-        
-        storeAs('video','Laravel in 100 Seconds.mp4');
-        
-        $request->file('thumbnail')->storeAs('thumbnail', $thumbnailName);
-        $request->file('video')-> storeAs('video',$videoName);
     }
 }
 
