@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\CreateCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use Illuminate\Support\Facades\Session;
 
 class CourseController extends Controller
 {
@@ -74,6 +75,12 @@ class CourseController extends Controller
                     'tag_id' => $tag->id,
                 ]);
                 
+            }
+
+            if($course){
+                Session::flash('success', 'Course Successfully Created!');
+            } else {
+                Session::flash('failed', 'Course Failed to be Created');
             }
 
         });
@@ -161,6 +168,12 @@ class CourseController extends Controller
                 $deleteTag = Tag::findOrFail($tag->id);
                 $deleteTag->delete();
             }
+
+            if($dataCourse){
+                Session::flash('success', 'Course Successfully Deleted!');
+            } else {
+                Session::flash('failed', 'Course Failed to be deleted');
+            }
         });
         
         return redirect('/show-all-courses');
@@ -169,7 +182,7 @@ class CourseController extends Controller
     public function editTags($id){
         $dataTags = Course::where('id', $id)
                             ->with('tags:id,name_tags')
-                            ->get();
+                            ->paginate(5);
 
         return view('Course.edit-tags', ['dataTags' => $dataTags]);
     }
@@ -180,30 +193,44 @@ class CourseController extends Controller
             'name_tags' => $request->name_tags
         ]);
 
+        if($tags){
+            Session::flash('success', 'Tag Edited');
+        } else {
+            Session::flash('failed', 'Failed to Update Tag');
+        }
+
         return redirect()->back();
     }
 
     public function storeTags(Request $request, $id){
 
-        $tags = explode(" ", $request->name_tags);
+        DB::transaction( function() use($request, $id){
+            $tags = explode(" ", $request->name_tags);
+    
+            $count = count($tags);
+    
+            foreach($tags as $tag){
+                Tag::create([
+                    'name_tags' => $tag
+                ]);
+            }
+    
+            $tagId = Tag::orderby('id', 'DESC')->take($count)->select('id')->get();
+            foreach($tagId as $tag){
+                $Tag = CourseTag::create([
+                    'course_id' => $id,
+                    'tag_id' => $tag->id
+                ]);
+            }
 
-        $count = count($tags);
-
-        foreach($tags as $tag){
-            Tag::create([
-                'name_tags' => $tag
-            ]);
-        }
-
-        $tagId = Tag::orderby('id', 'DESC')->take($count)->select('id')->get();
-        foreach($tagId as $tag){
-            CourseTag::create([
-                'course_id' => $id,
-                'tag_id' => $tag->id
-            ]);
-        }
+            if($Tag){
+                Session::flash('success', 'Tag Created');
+            } else {
+                Session::flash('failed', 'Tag Failed to be created');
+            }
+        });
         
-        return redirect()->back();
+        return redirect(url()->previous());
         
     }
 
@@ -211,7 +238,14 @@ class CourseController extends Controller
         
         $tags = Tag::findOrFail($id);
         $tags->delete();
-        return redirect()->back();
+
+        if($tags){
+            Session::flash('success', 'Tag Deleted Successfully');
+        } else {
+            Session::flash('failed', 'Tag Failed to be Deleted');
+        }
+        
+        return redirect(url()->previous());
     }
 
 

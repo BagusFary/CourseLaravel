@@ -7,11 +7,8 @@ use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Course;
 use App\Models\Invoice;
-use App\Notifications\InvoiceCancel;
-use App\Notifications\InvoicePaid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 
 class TransactionController extends Controller
