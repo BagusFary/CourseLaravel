@@ -2,6 +2,20 @@
 
 @section('content')
 <div class="container">
+
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fa-regular fa-circle-check"></i><strong> {{ session('success') }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    @endif
+    @if (session('failed'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fa-regular fa-circle-xmark"></i><strong> {{ session('failed') }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    @endif
+
     <div class="container">
         <div class="d-flex justify-content-center">
             <form action="" method="get" class="d-flex" role="search">

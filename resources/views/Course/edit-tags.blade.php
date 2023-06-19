@@ -9,15 +9,15 @@
   @endforeach
     
    
-    @if(Session::has('approve-message'))
+    @if(Session::has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <i class="fa-regular fa-circle-check fa-xl"></i><strong> {{ Session::get('approve-message') }}</strong>
+      <i class="fa-regular fa-circle-check fa-xl"></i><strong> {{ Session::get('success') }}</strong>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
-    @if(Session::has('cancel-message'))
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <i class="fa-regular fa-circle-check fa-xl"></i><strong> {{ Session::get('cancel-message') }}</strong>
+    @if(Session::has('failed'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <i class="fa-regular fa-circle-xmark fa-xl"></i><strong> {{ Session::get('failed') }}</strong>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
@@ -122,11 +122,11 @@
           @empty
           
           <h3 class="d-flex justify-content-center">There is no tags</h3>
-
-        @endforelse
-        @endforeach
-    </table>
-</div>
-
+          
+          @endforelse
+          @endforeach
+        </table>
+      </div>
+    
 
 @endsection
