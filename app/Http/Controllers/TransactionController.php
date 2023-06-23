@@ -21,21 +21,25 @@ class TransactionController extends Controller
     }
 
     public function orders(Request $request, $id){
-
-        $course = Course::find($id, ['price']);
-
-        $request['user_id'] = Auth::user()->id;
-        $request['course_id'] = $id;
-        $request['price'] = $course->price;
-        
-        $courseOrder = Order::create($request->all());
-        
-
-        if($courseOrder){
-            return response()->view('Transactions.order-success');
+        if(empty(Order::where('user_id', Auth::user()->id)->where('course_id', $id)->first())){
+            $course = Course::find($id, ['price']);
+    
+            $request['user_id'] = Auth::user()->id;
+            $request['course_id'] = $id;
+            $request['price'] = $course->price;
+            
+            $courseOrder = Order::create($request->all());
+            
+            if($courseOrder){
+                return response()->view('Transactions.order-success');
+            } else {
+                return response()->view('Transactions.order-failed');
+            }
         } else {
-            return response()->view('Transactions.order-failed');
+            Session::flash('has-orders', 'You have already ordered this course');
+            return redirect(url()->previous());
         }
+
     }
 
     public function approve($id){
