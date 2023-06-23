@@ -1,22 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- <div class="container">
-        <div class="d-flex justify-content-start">
-            <img src="{{ asset('/storage/thumbnail/'. $dataCourse->thumbnail) }}" class="img-fluid" alt="...">
-        </div>
-    </div>
-    <div class="container">
-        <div class="d-flex justify-content-start">
-            <h2>{{ $dataCourse->title }}</h2>
-        </div>
-    </div> --}}
-    <!-- Product section-->
+   
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-3">
+            @if (session('has-orders'))
+                <div class="alert alert-success">
+                    {{ session('has-orders') }}, check <a href="/show-user-orders">here</a>
+                </div>
+            @endif
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6">            
-                    {{-- <img class="card-img-top mb-5 mb-md-0" src="{{ asset('/storage/thumbnail/'. $dataCourse->thumbnail) }}" alt="..." /> --}}
                     <video src={{ asset('/storage/video/'. $dataCourse->video) }} class="card-img-top" controlsList="nodownload" oncontextmenu="return false;" muted autoplay loop>
                 </div>
                 <div class="col-md-6">
