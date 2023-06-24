@@ -77,12 +77,20 @@ class DashboardController extends Controller
     }
 
    public function invoiceDetail($id){
-        
+
         if(Auth::user()->role == "user"){
             $invoiceData = Invoice::with(['orders:id,user_id,course_id,created_at','orders.user:id,name,email', 'orders.course:id,title,thumbnail,price'])
                                 ->where('order_id', '=', $id)
-                                ->get();
+                                ->first();
+        if($invoiceData){
+            
+        if(Auth::user()->id != $invoiceData->orders->user_id){
+            return response()->view('Error.notfound');
+        }
             return view('Dashboard.user.invoicedetail', ['invoiceData' => $invoiceData]);
+        } else {
+            return response()->view('Error.notfound');
+        }
         } else {
             return response()->view('Error.unauthorized');
         }

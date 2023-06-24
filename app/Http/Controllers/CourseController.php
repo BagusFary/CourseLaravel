@@ -28,8 +28,12 @@ class CourseController extends Controller
     }
 
     public function detail($id){
-        $dataCourse = Course::findOrFail($id);
-        return view('Course.detail', ['dataCourse' => $dataCourse]);
+        $dataCourse = Course::where('id',$id)->first();
+        if($dataCourse){
+            return view('Course.detail', ['dataCourse' => $dataCourse]);
+        } else {
+            return response()->view('Error.notfound');
+        }
     }
 
     public function create(){
