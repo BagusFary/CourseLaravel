@@ -27,7 +27,7 @@
                     <div class="d-flex">
                       @can('user')
                         <button type="button" class="btn btn-outline-dark flex-shrink-0" data-bs-toggle="modal" data-bs-target="#orderModal">
-                            <i class="bi bi-cart">Order course</i>
+                            <i class="bi bi-cart">Order course</i> 
                         </button>
                       @endcan
 
