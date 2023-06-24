@@ -9,6 +9,11 @@
                     {{ session('has-orders') }}, check <a href="/show-user-orders">here</a>
                 </div>
             @endif
+            @if (session('only-user'))
+                <div class="alert alert-warning">
+                    {{ session('only-user') }}</a>
+                </div>
+            @endif
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6">            
                     <video src={{ asset('/storage/video/'. $dataCourse->video) }} class="card-img-top" controlsList="nodownload" oncontextmenu="return false;" muted autoplay loop>
@@ -20,10 +25,11 @@
                     </div>
                     <p class="lead title">{{ $dataCourse->description }}</p>
                     <div class="d-flex">
-                      
+                      @can('user')
                         <button type="button" class="btn btn-outline-dark flex-shrink-0" data-bs-toggle="modal" data-bs-target="#orderModal">
                             <i class="bi bi-cart">Order course</i>
                         </button>
+                      @endcan
 
                         <div class="modal fade" id="orderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
