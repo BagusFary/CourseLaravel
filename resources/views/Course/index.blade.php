@@ -2,6 +2,16 @@
 
 @section('content')
     <div class="container">
+        @if (Auth::check())
+        <div class="d-flex justify-content-center">
+            <div class="col-md-4">
+                <form action="" method="get" class="d-flex" role="search">
+                    <input class="form-control me-2" name="keyword" type="search" placeholder="Find here.." aria-label="Search">
+                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        @endif
         <div class="row">
          @forelse ($dataCourse as $item)
             <div class="col-md-4 mb-5 mt-3 d-flex justify-content-center">
