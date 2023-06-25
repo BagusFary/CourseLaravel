@@ -7,7 +7,6 @@
      @forelse ($dataCourse[0]->orders as $item)
         <div class="col-md-4 mb-5 mt-3 d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
-                {{-- <img src="{{ asset('storage/thumbnail/'. $item->course->thumbnail) }}" class="card-img-top" alt="..."> --}}
                 <video src={{ asset('/storage/video/'. $item->course->video) }} class="card-img-top" controls></video>
 
                 <div class="card-body">

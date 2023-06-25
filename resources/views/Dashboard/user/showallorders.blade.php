@@ -2,31 +2,6 @@
 
 @section('content')
 <div class="container">
-    {{-- <h2>Your Order List</h2>
-    <table class="table table-secondary table-striped">
-        <tr>
-            <th>No</th>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Status</th>
-        </tr>
-        @forelse ($dataOrder as $item)
-        <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $item->course->title }}</td>
-            <td>Rp.{{ number_format($item->price,2,',','.'); }}</td>
-            <td>@if ($item->status == 'active')
-                paid
-                @else
-                waiting 
-            @endif</td>
-        </tr>
-        @empty
-            <h3 class="d-flex justify-content-center">There is no order</h3>
-        @endforelse
-    </table> --}}
-    
-
         <div class="container h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col">

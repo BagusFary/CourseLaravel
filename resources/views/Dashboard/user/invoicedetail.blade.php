@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
-    
     <div class="card">
         <div class="card-body">
           <div class="container mb-5 mt-3">
@@ -103,6 +102,5 @@
           </div>
         </div>
       </div>
-      
 </div>
 @endsection
