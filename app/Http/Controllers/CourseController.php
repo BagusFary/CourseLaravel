@@ -32,7 +32,7 @@ class CourseController extends Controller
         if($dataCourse){
             return view('Course.detail', ['dataCourse' => $dataCourse]);
         } else {
-            return response()->view('Error.notfound');
+            return response()->view('Error.coursenotfound');
         }
     }
 
