@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\OrderJob;
 use Carbon\Carbon;
 use App\Models\Order;
+use App\Jobs\OrderJob;
 use App\Models\Course;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use App\Jobs\CheckFailedJobs;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Session;
 
 class TransactionController extends Controller
@@ -71,6 +73,8 @@ class TransactionController extends Controller
         ];
 
         dispatch(new OrderJob($users, $invoiceData))->delay(now()->addSeconds(20));
+
+        // dispatch(new CheckFailedJobs())->delay(now()->addSeconds(60));
 
         if($invoice){
             Session::flash('approve-message','Approve Order Successfull');
