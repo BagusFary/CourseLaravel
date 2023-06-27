@@ -46,14 +46,13 @@ class DashboardController extends Controller
             $dataOrder = Order::where('user_id', Auth::user()->id)
                                 ->with('course:id,title,description,thumbnail,price')                               
                                 ->select(['id','course_id','price','status'])                             
-                                ->paginate(10);
+                                ->paginate(5);
             return view('Dashboard.user.showallorders',['dataOrder' => $dataOrder]);
         }
     }
 
     public function showAllUserCourses(){
         
-
         if(Auth::user()->role == 'user'){
             $dataCourse = User::with(['orders' => function($query){
                 $query->where('status', 'active')
@@ -67,9 +66,9 @@ class DashboardController extends Controller
                 $query->select(['id','title','description','thumbnail','video']);
             }
             ])->where('id', Auth::user()->id)
-              ->select(['id','name','email'])->paginate(3);
-             
-              
+              ->select(['id','name','email'])
+              ->paginate(3);
+
             return view('Dashboard.user.showallcourses', ['dataCourse' => $dataCourse]);
         } else {
             return response()->view('Error.unauthorized');
