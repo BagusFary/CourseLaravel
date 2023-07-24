@@ -74,8 +74,6 @@ class TransactionController extends Controller
 
         dispatch(new OrderJob($users, $invoiceData))->delay(now()->addSeconds(20));
 
-        // dispatch(new CheckFailedJobs())->delay(now()->addSeconds(60));
-
         if($invoice){
             Session::flash('approve-message','Approve Order Successfull');
         } else {

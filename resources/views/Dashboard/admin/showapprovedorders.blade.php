@@ -10,18 +10,8 @@
         </div>
     @endif
     <div class="dropdown mb-4 d-flex justify-content-end">
-      {{-- <button class="btn btn-primary dropdown-toggle" type="button"
-          id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
-          Dropdown
-      </button>
-      <div class="dropdown-menu animated--fade-in"
-          aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-      </div> --}}
   </div>
+  <div class="table-responsive">
     <table class="table table-secondary table-striped">
         <tr>
             <th>Order ID</th>
@@ -81,6 +71,7 @@
             <h3 class="d-flex justify-content-center">There is no approved order.</h3>
         @endforelse
     </table>
+    </div>
     {{ $dataOrder->links() }}
 </div>
 
