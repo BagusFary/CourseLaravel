@@ -1,6 +1,6 @@
 
 # Laravel Web Course
-
+<img src="https://github.com/BagusFary/CourseLaravel/blob/master/laravellogo.png" width="200" height="200" />
 Website Laravel Backend dengan tema web course dimana user dapat memesan/order dan mengakses course yang sudah dibeli menggunakan sistem payment manual berupa Admin Approvement.
 
 - User Dashboard
