@@ -93,7 +93,6 @@ class CourseController extends Controller
             });
         }
 
-
         return redirect('/show-all-courses');
     }
 
