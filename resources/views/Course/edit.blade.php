@@ -2,6 +2,14 @@
 
 @section('content')
 
+@push('styles')
+    @livewireStyles
+@endpush
+@push('scripts')
+    @livewireScripts
+@endpush
+
+
 <div class="container">
 
     <h2 class="d-flex justify-content-center">Edit Course</h2>
@@ -14,20 +22,8 @@
             </ul>
         </div>
     @endif
-    <div class="d-flex justify-content-center mt-3">
-        <div class="card" style="width: 18rem;">
-            {{-- <img src="{{ asset('storage/thumbnail/'.$dataCourse->thumbnail) }}" class="card-img-top" alt="..."> --}}
-            <video src="{{ asset('storage/video/'. $dataCourse->video) }}" class="card-img-top" controlsList="nodownload" oncontextmenu="return false;" muted autoplay loop></video>
-            <div class="card-body">
-              <h5 class="card-title">{{ $dataCourse->title }}</h5>
-              @foreach ($dataCourse->tags as $tag)
-                <a href="/course?keyword={{ $tag->name_tags }}"><span class="badge text-bg-secondary">{{ $tag->name_tags }}</span></a>
-              @endforeach
-              <p class="card-text">{{ $dataCourse->description }}</p>
-              <p>Rp.{{ number_format($dataCourse->price,2,',','.'); }}</p>
-              <a href="#" class="btn btn-success disabled">Course Detail</a>
-            </div>
-          </div>
+    @livewire('edit-course', ["dataCourse" => $dataCourse])
+    
           <form action="/update-course/{{ $dataCourse->id }}" method="POST" enctype="multipart/form-data">
             @method('put')
             @csrf
@@ -54,10 +50,6 @@
                         <input type="number" name="price" class="form-control" placeholder="Price" value="{{ $dataCourse->price }}" required>
                     </div>
                 </div>
-                {{-- <div class="mb-2 mx-3">
-                    <label for="tags" class="form-label">Tags</label>
-                    <input type="text" name="tags" class="form-control" id="tags" placeholder="" value="{{ implode(" ",$tagName) }}">
-                </div> --}}
                 <div class="mb-3 mx-3">
                     <button type="submit" class="btn btn-success">Save</button>
                     <a href="/show-all-courses" class="btn btn-warning">Back/Cancel</a>
