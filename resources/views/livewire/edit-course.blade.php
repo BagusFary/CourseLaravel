@@ -8,7 +8,11 @@
                 <a href="/course?keyword={{ $tag->name_tags }}"><span class="badge text-bg-secondary">{{ $tag->name_tags }}</span></a>
                 @endforeach
                 <p class="card-text">{{ $description }}</p>
+                @if (empty($price))
+                <p>Rp.</p>
+                @elseif($price)
                 <p>Rp.{{ number_format($price,2,',','.'); }}</p>
+                @endif
                 <a href="#" class="btn btn-success disabled">Course Detail</a>
             </div>
         </div>
@@ -20,10 +24,10 @@
                     <label for="title" class="form-label">Course Title</label>
                     <input type="text" name="title" class="form-control" id="title" placeholder="{{ $title }}" value="{{ $title }}" wire:model="title">
                 </div>
-                    <div class="mx-3">
-                        <label for="description">Description</label>
-                        <textarea name="description" class="form-control" id="description" cols="10" rows="5" placeholder="{{ $description }}" value="{{ $description }}" wire:model="description">{{ $description }}</textarea>
-                    </div>
+                <div class="mx-3">
+                    <label for="description">Description</label>
+                    <textarea name="description" class="form-control" id="description" cols="10" rows="5" placeholder="{{ $description }}" value="{{ $description }}" wire:model="description">{{ $description }}</textarea>
+                </div>
                 <div class="mb-3 mx-3">
                     <label for="thumbnail">Thumbnail</label>
                     <input type="file" name="thumbnail" class="form-control" id="thumbnail">
