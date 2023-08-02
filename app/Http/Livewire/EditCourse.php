@@ -6,6 +6,7 @@ use Livewire\Component;
 
 class EditCourse extends Component
 {
+    public $courseID;
     public $title;
     public $description;
     public $price;
@@ -15,6 +16,7 @@ class EditCourse extends Component
 
     public function mount($dataCourse)
     {
+        $this->courseID = $dataCourse->id;
         $this->title = $dataCourse->title;
         $this->description = $dataCourse->description;
         $this->price = $dataCourse->price;
