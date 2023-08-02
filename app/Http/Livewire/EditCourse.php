@@ -14,6 +14,10 @@ class EditCourse extends Component
     public $thumbnail;
     public $tags;
 
+    protected $rules = [
+        'description' => 'required|max:20'
+    ];
+
     public function mount($dataCourse)
     {
         $this->courseID = $dataCourse->id;
