@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
+@push('styles')
+    @livewireStyles
+@endpush
+
+@push('scripts')
+    @livewireScripts
+@endpush
+
 @section('content')
+    
+    
     <div class="container">
         @if (Auth::check())
         <div class="d-flex justify-content-center">

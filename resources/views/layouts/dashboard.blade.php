@@ -20,12 +20,14 @@
       <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
       <!-- Custom styles for this template-->
       <link href="{{ url('/') }}/css/sb-admin-2.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="{{ url('/') }}/css/loader.css">
       <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
 
 
       <!-- Scripts -->
       <script src="https://kit.fontawesome.com/23892f488e.js" crossorigin="anonymous"></script>
       @stack('styles')
+
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
@@ -231,5 +233,6 @@
         <!-- Custom scripts for all pages-->
         <script src="{{ url('/') }}/js/sb-admin-2.min.js"></script>
         @stack('scripts')
+        @include('sweetalert::alert')
 </body>
 </html>

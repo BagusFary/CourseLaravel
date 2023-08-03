@@ -23,8 +23,6 @@
         </div>
     @endif
     @livewire('edit-course', ["dataCourse" => $dataCourse])
-    
-         
     </div>
     
 @endsection 
