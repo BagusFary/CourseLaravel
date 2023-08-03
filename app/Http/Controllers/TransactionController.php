@@ -12,6 +12,7 @@ use App\Jobs\CheckFailedJobs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TransactionController extends Controller
 {
@@ -75,9 +76,9 @@ class TransactionController extends Controller
         dispatch(new OrderJob($users, $invoiceData))->delay(now()->addSeconds(20));
 
         if($invoice){
-            Session::flash('approve-message','Approve Order Successfull');
+            Alert::success('Approve Success', 'Order has been approved!');
         } else {
-            Session::flash('approve-message','Approve Order Failed');
+            Alert::error('Approve Failed', 'Approve order failed');
         }
         return redirect('/show-all-orders');
         
@@ -109,9 +110,9 @@ class TransactionController extends Controller
         dispatch(new OrderJob($users, $invoiceData))->delay(now()->addSeconds(20));
 
         if($invoice){
-            Session::flash('cancel-message','Cancel Order Successfull');
+            Alert::success('Order Canceled', 'The order has been canceled');
         } else {
-            Session::flash('cancel-message','Cancel Order Failed');
+            Alert::error('Cancel Failed', 'Cancel Order failed!');
         }
         return redirect('/show-all-orders');
     }

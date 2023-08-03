@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\CreateCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 
@@ -160,6 +161,7 @@ class CourseController extends Controller
             ]);
         }
 
+        Alert::success('Update Saved', 'Course has been updated!');
 
         return redirect('/show-all-courses');
 
