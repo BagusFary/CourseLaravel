@@ -24,7 +24,13 @@
                 <div class="mb-2 mx-3">
                     <label for="title" class="form-label">Course Title 
                         <div wire:loading wire:target='title'>
-                            <div class="spinner-border text-dark" role="status"></div>    
+                            <div class="la-ball-elastic-dots la-dark la-sm">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
                         </div>
                     </label>
                     <input type="text" name="title" class="form-control" id="title" placeholder="{{ $title }}" value="{{ $title }}" wire:model.debounce.600ms="title" >
@@ -32,7 +38,13 @@
                 <div class="mx-3">
                     <label for="description">Description 
                         <div wire:loading wire:target='description'>
-                            <div class="spinner-border text-dark" role="status"></div>    
+                            <div class="la-ball-elastic-dots la-dark la-sm">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>    
                         </div>
                     </label> 
                     <textarea name="description" class="form-control" id="description" cols="10" rows="5" placeholder="{{ $description }}" value="{{ $description }}" wire:model.debounce.600ms="description" >{{ $description }}</textarea>
@@ -48,7 +60,13 @@
                 <div class="mb-3 mx-3">
                     <label for="price">Price
                         <div wire:loading wire:target='price'>
-                            <div class="spinner-border text-dark" role="status"></div>    
+                            <div class="la-ball-elastic-dots la-dark la-sm">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>   
                         </div>
                     </label>
                     <div class="input-group mb-3">

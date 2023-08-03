@@ -1,8 +1,15 @@
 @extends('layouts.dashboard')
+@push('styles')
+    @livewireStyles
+@endpush
+
+@push('scripts')
+    @livewireScripts
+@endpush
 
 @section('content')
 <div class="container">
-
+    
     @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <i class="fa-regular fa-circle-check"></i><strong> {{ session('success') }}</strong>
@@ -24,6 +31,7 @@
             </form>
         </div>
     </div>
+    
     <div class="row">
      @forelse ($dataCourse as $item)
         <div class="col-md-4 mb-5 mt-3 d-flex justify-content-center">

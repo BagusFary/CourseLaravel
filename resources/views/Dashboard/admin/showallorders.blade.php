@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
+
 <div class="container">
     <h2>List Orders</h2>
     @if(Session::has('approve-message'))
