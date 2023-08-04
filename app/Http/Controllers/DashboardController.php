@@ -36,6 +36,7 @@ class DashboardController extends Controller
         $dataOrder = Order::with(['user:id,name','course:id,title'])
                             ->where('status', 'active')
                             ->orWhere('status', 'cancel')
+                            ->orderBy('id','desc')
                             ->paginate(7);
         return view('Dashboard.admin.showapprovedorders', ['dataOrder' => $dataOrder]);
     }

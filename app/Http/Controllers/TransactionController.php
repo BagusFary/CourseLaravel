@@ -124,9 +124,9 @@ class TransactionController extends Controller
         $deleteOrders->delete();
 
         if($deleteOrders){
-            Session::flash('delete-message','Delete Order Successfull');
+            Alert::success('Order Deleted','Delete Order Successfull');
         } else {
-            Session::flash('delete-message','Delete Order Failed');
+            Alert::error('Delete Order Failed','Delete Order Failed');
         }
         return redirect(url()->previous());
     }
