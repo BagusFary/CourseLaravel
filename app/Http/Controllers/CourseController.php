@@ -16,16 +16,8 @@ use App\Http\Requests\UpdateCourseRequest;
 
 class CourseController extends Controller
 {
-    public function index(Request $request){
-        $keyword = $request->keyword;
-        $dataCourse = Course::with('tags:id,name_tags')
-                            ->where('title', 'LIKE', '%'.$keyword.'%')
-                            ->orWhereHas('tags', function($query) use($keyword){
-                                $query->where('name_tags', 'LIKE', '%'.$keyword.'%');
-                            })
-                            ->paginate(3)
-                            ->withQueryString();
-        return view('Course.index', ['dataCourse' => $dataCourse]);
+    public function index(){
+        return view('Course.index');
     }
 
     public function detail($id){
