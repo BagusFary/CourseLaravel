@@ -1,5 +1,5 @@
 <div>
-    
+
     <div class="container">
         @if (Auth::check())
         <div class="d-flex justify-content-center">
@@ -45,6 +45,14 @@
                    <div class="d-flex justify-content-center">
                        <div class="mt-5">
                            <h2>No Course Found :(</h2>
+                           <div class="la-pacman la-dark la-2x">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
                        </div>
                    </div>
                 @endforelse
