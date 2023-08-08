@@ -11,6 +11,7 @@ class IndexCourse extends Component
     public $search = '';
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+    protected $queryString = ['search'];
 
 
     public function render()

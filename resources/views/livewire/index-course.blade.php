@@ -33,7 +33,7 @@
                            <div class="card-body">
                              <h5 class="card-title">{{ $item->title }}</h5>
                                @foreach ($item->tags as $tag)
-                                    <a href="/course?keyword={{ $tag->name_tags }}"><span class="badge text-bg-secondary">{{ $tag->name_tags }}</span></a>
+                                    <a href="/course?search={{ $tag->name_tags }}"><span class="badge text-bg-secondary">{{ $tag->name_tags }}</span></a>
                                @endforeach
                              <p class="card-text">{{ $item->description }}</p>
                              <p>Rp.{{ number_format($item->price,2,',','.'); }}</p>
