@@ -16,7 +16,7 @@ class IndexCourse extends Component
 
     public function render()
     {
-        sleep(2);
+        sleep(1.5);
         $dataCourse = Course::with('tags:id,name_tags')
                             ->where('title', 'LIKE', '%'.$this->search.'%')
                             ->orWhereHas('tags', function($query){
