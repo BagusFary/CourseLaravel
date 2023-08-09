@@ -4,14 +4,12 @@
         @if (Auth::check())
         <div class="d-flex justify-content-center">
             <div class="col-md-4">
-                <form action="" method="get" class="d-flex" role="search">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">
-                            <i class="bi bi-search"></i>
-                        </span>
-                        <input type="text" class="form-control" placeholder="Find here..." aria-describedby="basic-addon1" wire:model.debounce.450ms="search">
-                      </div>
-                </form>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Find here..." aria-describedby="basic-addon1" wire:model.debounce.450ms="search">
+                </div>
             </div>
         </div>
         <div class="mb-2 d-flex justify-content-end">
