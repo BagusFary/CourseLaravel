@@ -17,7 +17,7 @@ class ListOrderAdmin extends Component
     {
         sleep(1.5);
         $dataOrder = Order::with(['user:id,name','course:id,title'])
-                            ->paginate(7);
+                            ->paginate(3);
         return view('livewire.list-order-admin',['dataOrder' => $dataOrder]);
     }
 }
