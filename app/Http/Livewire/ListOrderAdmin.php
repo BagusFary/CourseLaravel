@@ -17,6 +17,9 @@ class ListOrderAdmin extends Component
     {
         sleep(1.5);
         $dataOrder = Order::with(['user:id,name','course:id,title'])
+                            ->whereHas('user', function($query){
+                                $query->where('name', 'LIKE', '%'.$this->search.'%');
+                            })
                             ->paginate(3);
         return view('livewire.list-order-admin',['dataOrder' => $dataOrder]);
     }
