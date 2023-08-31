@@ -17,6 +17,7 @@ class ListOrderAdmin extends Component
     {
         sleep(1.5);
         $dataOrder = Order::with(['user:id,name','course:id,title'])
+                            ->where('status','pending')
                             ->whereHas('user', function($query){
                                 $query->where('name', 'LIKE', '%'.$this->search.'%');
                             })
