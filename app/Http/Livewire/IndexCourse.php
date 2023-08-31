@@ -9,10 +9,11 @@ use Livewire\WithPagination;
 class IndexCourse extends Component
 {
     public $search = '';
-    use WithPagination;
     protected $paginationTheme = 'bootstrap';
+    
     protected $queryString = ['search'];
-
+    
+    use WithPagination;
 
     public function render()
     {
