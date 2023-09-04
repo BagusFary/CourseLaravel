@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+//test
+
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/', [CourseController::class, 'index']);
     Route::get('/course', [CourseController::class, 'index']);
